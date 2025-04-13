@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOBPRO - Blocos dinâmicos e Plugins de Marcenaria para SketchUp</title>
+    <style>
+        :root {
+            --primary: #2b5876;
+            --secondary: #4e4376;
+            --accent: #4CAF50;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #e0e0e0;
+            --highlight: #FFD700;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 10%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8em;
+            margin: 0 auto 20px;
+            max-width: 90%;
+            line-height: 1.2;
+        }
+        
+        header p {
+            font-size: 1.5em;
+            margin: 20px auto 0;
+            max-width: 80%;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            font-size: 2em;
+            margin-top: 40px;
+            border-bottom: 2px solid var(--gray);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: var(--primary);
+            font-size: 1.5em;
+        }
+        
+        .video-container {
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .benefit-card {
+            flex: 1 1 250px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 18px 36px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 30px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .cta-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .telegram-button {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 18px 36px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 30px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 136, 204, 0.3);
+        }
+        
+        .telegram-button:hover {
+            background: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 136, 204, 0.4);
+        }
+        
+        .price-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .price-plan {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed var(--gray);
+        }
+        
+        .price-plan:last-child {
+            border-bottom: none;
+        }
+        
+        .price-title {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .price-value {
+            font-size: 1.5em;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        
+        .price-discount {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .price-installments {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .price-highlight {
+            background-color: rgba(255, 215, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: var(--dark);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        /* Seção de Recursos */
+        .resources {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .resource-category {
+            margin-bottom: 40px;
+        }
+        
+        .resource-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed var(--gray);
+        }
+        
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .resource-desc {
+            margin-left: 20px;
+            margin-bottom: 8px;
+        }
+        
+        /* Tabs de navegação */
+        .tab-container {
+            margin: 40px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 5%;
+            }
+            
+            header h1 {
+                font-size: 2em;
+                max-width: 100%;
+            }
+            
+            header p {
+                font-size: 1.2em;
+                max-width: 100%;
+            }
+            
+            .benefit-card {
+                flex: 1 1 100%;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                text-align: left;
+                border-bottom: 1px solid var(--gray);
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button, .telegram-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MOBPRO - Plugins e Blocos Dinâmicos para Marcenaria no SketchUp</h1>
+            <p>Transforme seus projetos com plano de corte, orçamentos precisos e lista de materiais automática</p>
+        </header>
+        
+        <div class="video-container">
+            <iframe width="100%" height="600" src="https://www.youtube.com/embed/CQBsRLRiaJg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <h2>Por que escolher o MOBPRO?</h2>
+        
+        <div class="benefits">
+            <div class="benefit-card">
+                <h3>⏱️ Economize Tempo</h3>
+                <p>Reduza em até 70% o tempo de criação de projetos e orçamentos.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>✂️ Cortes Automáticos</h3>
+                <p>Gere cortes precisos sem cálculos manuais.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>📋 Lista de Materiais</h3>
+                <p>Relatórios completos em segundos.</p>
+            </div>
+        </div>
+        
+        <div class="contact-buttons">
+            <a href="https://wa.me/18996665019" class="cta-button">FALE NO WHATSAPP</a>
+            <a href="https://t.me/elvismeiado" class="telegram-button">FALE NO TELEGRAM</a>
+        </div>
+        
+        <div class="price-container">
+            <div class="price-plan">
+                <div class="price-title">Adesão Biblioteca de Blocos</div>
+                <div class="price-value">
+                    <span class="price-original">R$2.500</span>
+                    <span class="price-discount">R$1.650</span>
+                </div>
+                <div class="price-installments">12x sem juros de R$137,50</div>
+                <div class="resource-desc">(Atualizações anuais não inclusas (valor de R$350 para atualização), obrigatório a renovação da Licença dos Plugins MOBPRO para uso)</div>
+            </div>
+            <div class="price-plan">
+                <div class="price-title">Licença Anual Plugins MOBPRO</div>
+                <div class="price-value">
+                    <span class="price-original">R$1.000</span>
+                    <span class="price-discount">R$650</span>
+                </div>
+                <div class="price-installments">12x sem juros de R$54,17</div>
+            </div>
+            <div class="price-plan">
+                <div class="price-title">Adesão Pack MOBPRO (Biblioteca de Blocos + Licença Anual dos Plugins)</div>
+                <div class="price-value">
+                    <span class="price-original">R$3.500</span>
+                    <span class="price-discount">R$2.300</span>
+                </div>
+                <div class="price-installments">12x sem juros de R$191,67</div>
+                <div class="resource-desc">(1 ano de licença de plugins + Blocos)</div>
+            </div>
+            <div class="price-highlight">
+                DESCONTOS DE ATÉ 20% PARA PAGAMENTOS NO PIX
+            </div>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab(event, 'beneficios')">Benefícios</button>
+                <button class="tab-btn" onclick="openTab(event, 'recursos')">Recursos</button>
+            </div>
+            
+            <div id="beneficios" class="tab-content active">
+                <div class="benefits">
+                    <div class="benefit-card">
+                        <h3>🔄 Fluxo de Trabalho Otimizado</h3>
+                        <p>Integração perfeita com SketchUp e Plugin Gratuito OpenCutList para um fluxo contínuo</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>📈 Aumento de Produtividade</h3>
+                        <p>Reduza o tempo de projeto em até 70% com ferramentas automatizadas</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>💡 Design Inteligente</h3>
+                        <p>Componentes que se adaptam automaticamente às suas configurações</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>💰 Economia Financeira</h3>
+                        <p>Redução de erros de orçamento e retrabalho significa menos desperdício de materiais</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>🎯 Precisão Aprimorada</h3>
+                        <p>Plano de Corte calculados automaticamente (via Opencutlist) com margem de erro mínima</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>📊 Documentação Automatizada</h3>
+                        <p>Listas de materiais, Orçamentos e plano de corte geradas instantaneamente (via Opencutlist)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="recursos" class="tab-content">
+                <div class="resources">
+                    <h2>Recursos dos Blocos MOBPRO de Marcenaria para SketchUp</h2>
+                    
+                    <div class="resource-category">
+                        <h3>OBS: Todos os recursos de Edição só serão possíveis usando o PLUGIN Menu MOBPRO (não é possivel editar via menu nativo "Opções de Componente")</h3>
+                        <div class="resource-item">
+                            <div class="resource-title">Edição completa de medidas</div>
+                            <div class="resource-desc">Largura, altura, profundidade e espessuras configuráveis separadamente para cada tipo de peça</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Otimização para OpenCutList</div>
+                            <div class="resource-desc">Veios já no sentido correto, sem necessidade de usar orientação automática</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Renomeação segura</div>
+                            <div class="resource-desc">Possibilidade de renomear peças sem causar erros</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>Itens Avulsos</h3>
+                        <div class="resource-item">
+                            <div class="resource-title">Acessórios editáveis</div>
+                            <div class="resource-desc">5 campos para nomear acessórios e especificar quantidades manualmente</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Fechamento dinâmico e rodapé</div>
+                            <div class="resource-desc">Configuração de comprimento máximo, opção de frontal interno/externo, ocultação de lados individuais</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Coxim Misto</div>
+                            <div class="resource-desc">Ocultação superior/inferior individual, configuração de recuo frontal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>Caixaria</h3>
+                        <div class="resource-item">
+                            <div class="resource-title">Configurações completas</div>
+                            <div class="resource-desc">Altura total, quantidade e vão entre coxins, largura do coxim, altura do rodapé</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">Opções de montagem</div>
+                            <div class="resource-desc">Métodos Construtivos: Tampo/Travessa/Coxim/Externo</div>
+                            <div class="resource-desc">Base: apoiada/encostada/rodapé</div>
+                            <div class="resource-desc">Topo: apoiado/encostado</div>
+                            <div class="resource-desc">Fundo: pregado/rasgado/rebaixado/sem fundo/Laterais rasgadas/Laterais rebaixadas</div>
+                            <div class="resource-desc">Travessas dianteiras e traseiras: opção de engrosso individual</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>Plugins Exclusivos</h3>
+                        <div class="resource-item">
+                            <div class="resource-title">Menu MOBPRO</div>
+                            <div class="resource-desc">Interface exclusiva para edição dos Blocos da Biblioteca MOBPRO (não são editados no menu nativo do SketchUp)</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO</div>
+                            <div class="resource-desc">Trocar Material, Inserir/Remover/Criar Camada, Tornar único recursivo, Ajustar Textura (fora de escala)</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Inserir bloco</div>
+                            <div class="resource-desc">Interface amigável para pesquisa e inserção de blocos em posições específicas</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Miniaturas</div>
+                            <div class="resource-desc">Interface para geração de miniaturas dos blocos</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Rotação de Texturas</div>
+                            <div class="resource-desc">Permite rotacionar texturas dos blocos sem alterar os eixos (apenas visualmente)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px;">
+            <div class="contact-buttons">
+                <a href="https://wa.me/18996665019" class="cta-button">FALE NO WHATSAPP</a>
+                <a href="https://t.me/elvismeiado" class="telegram-button">FALE NO TELEGRAM</a>
+            </div>
+            <p class="price-installments">Promoção válida por tempo limitado</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 MOBPRO | Contato: elvis.meiado@live.com</p>
+    </footer>
+    
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tabbuttons = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Inicializa com a aba de benefícios aberta
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('beneficios').classList.add('active');
+            document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+        });
+    </script>
+</body>
+</html>
