@@ -49,6 +49,23 @@
             font-weight: 500;
             line-height: 1.4;
         }
+        .playlist-highlight {
+            background: linear-gradient(90deg, #FFD700 60%, #FFFBE6 100%);
+            color: #2b5876;
+            text-align: center;
+            padding: 22px 10px 10px 10px;
+            font-size: 1.35em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            margin-top: 10px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 2px 10px rgba(44,44,44,0.10);
+            border-bottom: 3px solid var(--accent);
+        }
+        .playlist-highlight strong {
+            color: #4e4376;
+        }
         h2 {
             color: var(--secondary);
             font-size: 2em;
@@ -60,21 +77,20 @@
             color: var(--primary);
             font-size: 1.5em;
         }
-        /* Vídeo Responsivo (Ajuste Principal) */
-        .video-container {
+        .playlist-container {
             position: relative;
             width: 100%;
-            margin: 40px 0;
-            border-radius: 10px;
+            margin: 0 0 40px 0;
+            border-radius: 0 0 10px 10px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .video-container::before {
+        .playlist-container::before {
             content: "";
             display: block;
-            padding-top: 56.25%; /* Proporção 16:9 */
+            padding-top: 56.25%;
         }
-        .video-container iframe {
+        .playlist-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -196,7 +212,6 @@
             color: white;
             border-radius: 10px;
         }
-        /* Seção de Recursos */
         .resources {
             background: white;
             border-radius: 10px;
@@ -225,7 +240,6 @@
             margin-left: 20px;
             margin-bottom: 8px;
         }
-        /* Tabs de navegação */
         .tab-container {
             margin: 40px 0;
         }
@@ -262,7 +276,6 @@
         .tab-content.active {
             display: block;
         }
-        /* Responsividade */
         @media (max-width: 768px) {
             header {
                 padding: 30px 5%;
@@ -311,30 +324,35 @@
     <div class="container">
         <header>
             <h1>MOBPRO - Plugins e Blocos Dinâmicos para Marcenaria no SketchUp</h1>
-            <p>Transforme seus projetos com plano de corte, orçamentos precisos e lista de materiais automática</p>
+            <p>Agilize seus projetos e cortes com nossos blocos dinâmicos e plugins exclusivos para SketchUp</p>
         </header>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/CQBsRLRiaJg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="playlist-highlight">
+            <span>🎬 <strong>Confira TODOS os detalhes dos Plugins e Blocos MOBPRO!</strong><br>
+            Assista aos vídeos completos na <strong>playlist exclusiva anexada abaixo</strong>. Todas as funcionalidades, dicas e demonstrações estão nos vídeos!</span>
         </div>
-        <h2>Por que escolher o MOBPRO?</h2>
+        <div class="playlist-container">
+            <iframe
+                src="https://www.youtube.com/embed/videoseries?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+            ></iframe>
+        </div>
+
         <div class="benefits">
             <div class="benefit-card">
-                <h3>⏱️ Economize Tempo</h3>
-                <p>Reduza em até 70% o tempo de criação de projetos e orçamentos.</p>
+                <h3>Automatize sua Marcenaria</h3>
+                <p>Montagem rápida de projetos, blocos editáveis, lista e plano de corte integrados ao OpenCutList.</p>
             </div>
             <div class="benefit-card">
-                <h3>✂️ Cortes Automáticos</h3>
-                <p>Gere cortes precisos sem cálculos manuais.</p>
+                <h3>Totalmente Editável</h3>
+                <p>Altere dimensões e configurações dos módulos em segundos, sem risco de erros.</p>
             </div>
             <div class="benefit-card">
-                <h3>📋 Lista de Materiais</h3>
-                <p>Relatórios completos em segundos.</p>
+                <h3>Plugins Exclusivos</h3>
+                <p>Ferramentas avançadas para otimizar fluxo, materiais, texturas e integrar ao Enscape.</p>
             </div>
         </div>
-        <div class="contact-buttons">
-            <a href="https://wa.me/18996665019" class="cta-button">FALE NO WHATSAPP</a>
-            <a href="https://t.me/elvismeiado" class="telegram-button">FALE NO TELEGRAM</a>
-        </div>
+
         <div class="price-container">
             <div class="price-plan">
                 <div class="price-title">Adesão Biblioteca de Blocos</div>
@@ -343,7 +361,7 @@
                     <span class="price-discount">R$1.650</span>
                 </div>
                 <div class="price-installments">12x sem juros de R$137,50</div>
-                <div class="resource-desc">(Atualizações anuais não inclusas (valor de R$350 para atualização), obrigatório a renovação da Licença dos Plugins MOBPRO para uso)</div>
+                <div class="resource-desc">(Atualizações anuais não inclusas no valor de R$350 + Taxas de parcelamento para atualização, obrigatório a renovação da Licença dos Plugins MOBPRO para uso)</div>
             </div>
             <div class="price-plan">
                 <div class="price-title">Licença Anual Plugins MOBPRO</div>
@@ -351,7 +369,7 @@
                     <span class="price-original">R$1.000</span>
                     <span class="price-discount">R$650</span>
                 </div>
-                <div class="price-installments">12x sem juros de R$54,17</div>
+                <div class="price-installments">12x sem juros de R$54,17 (apenas na adesão, para renovação as taxas de parcelamento serão aplicadas)</div>
             </div>
             <div class="price-plan">
                 <div class="price-title">Adesão Pack MOBPRO (Biblioteca de Blocos + Licença Anual dos Plugins)</div>
@@ -363,87 +381,68 @@
                 <div class="resource-desc">(1 ano de licença de plugins + Blocos)</div>
             </div>
             <div class="price-highlight">
-                DESCONTOS DE ATÉ 20% PARA PAGAMENTOS NO PIX
+                DESCONTOS DE ATÉ 20% PARA PAGAMENTOS NO PIX (apenas na adesão, na renovação as taxas de parcelamento serão aplicadas)
             </div>
         </div>
+
         <div class="tab-container">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="openTab(event, 'beneficios')">Benefícios</button>
                 <button class="tab-btn" onclick="openTab(event, 'recursos')">Recursos</button>
             </div>
             <div id="beneficios" class="tab-content active">
-                <div class="benefits">
-                    <div class="benefit-card">
-                        <h3>🔄 Fluxo de Trabalho Otimizado</h3>
-                        <p>Integração perfeita com SketchUp e Plugin Gratuito OpenCutList para um fluxo contínuo</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>📈 Aumento de Produtividade</h3>
-                        <p>Reduza o tempo de projeto em até 70% com ferramentas automatizadas</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>💡 Design Inteligente</h3>
-                        <p>Componentes que se adaptam automaticamente às suas configurações</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>💰 Economia Financial</h3>
-                        <p>Redução de erros de orçamento e retrabalho significa menos desperdício de materiais</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>🎯 Precisão Aprimorada</h3>
-                        <p>Plano de Corte calculados automaticamente (via Opencutlist) com margem de erro mínima</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>📊 Documentação Automatizada</h3>
-                        <p>Listas de materiais, Orçamentos e plano de corte geradas instantaneamente (via Opencutlist)</p>
-                    </div>
-                </div>
+                <ul>
+                    <li>Montagem ágil de projetos no SketchUp</li>
+                    <li>Blocos com medidas e montagem editáveis</li>
+                    <li>Integração completa com OpenCutList</li>
+                    <li>Plugins exclusivos que facilitam o dia a dia</li>
+                </ul>
             </div>
             <div id="recursos" class="tab-content">
                 <div class="resources">
                     <h2>Recursos dos Blocos MOBPRO de Marcenaria para SketchUp</h2>
                     <div class="resource-category">
-                        <h3>OBS: Todos os recursos de Edição só serão possíveis usando o PLUGIN Menu MOBPRO (não é possivel editar via menu nativo "Opções de Componente")</h3>
+                        <h3>OBS: Todos os recursos de Edição só serão possíveis usando o PLUGIN Menu MOBPRO (não é possível editar via menu nativo "Opções de Componente")</h3>
                         <div class="resource-item">
                             <div class="resource-title">Edição completa de medidas</div>
-                            <div class="resource-desc">Largura, altura, profundidade e espessuras configuráveis separadamente para cada tipo de peça</div>
+                            <div class="resource-desc">Largura, altura, profundidade e espessuras configuráveis separadamente para cada tipo de peça.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">Otimização para OpenCutList</div>
-                            <div class="resource-desc">Veios já no sentido correto, sem necessidade de usar orientação automática</div>
+                            <div class="resource-desc">Veios já no sentido correto, sem necessidade de usar orientação automática.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">Renomeação segura</div>
-                            <div class="resource-desc">Possibilidade de renomear peças sem causar erros</div>
+                            <div class="resource-desc">Possibilidade de renomear peças sem causar erros.</div>
                         </div>
                     </div>
                     <div class="resource-category">
                         <h3>Itens Avulsos</h3>
                         <div class="resource-item">
                             <div class="resource-title">Acessórios editáveis</div>
-                            <div class="resource-desc">5 campos para nomear acessórios e especificar quantidades manualmente</div>
+                            <div class="resource-desc">5 campos para nomear acessórios e especificar quantidades manualmente.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">Fechamento dinâmico e rodapé</div>
-                            <div class="resource-desc">Configuração de comprimento máximo, opção de frontal interno/externo, ocultação de lados individuais</div>
+                            <div class="resource-desc">Configuração de comprimento máximo, opção de frontal interno/externo, ocultação de lados individuais.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">Coxim Misto</div>
-                            <div class="resource-desc">Ocultação superior/inferior individual, configuração de recuo frontal</div>
+                            <div class="resource-desc">Ocultação superior/inferior individual, configuração de recuo frontal.</div>
                         </div>
                     </div>
                     <div class="resource-category">
                         <h3>Caixaria</h3>
                         <div class="resource-item">
                             <div class="resource-title">Configurações completas</div>
-                            <div class="resource-desc">Altura total, quantidade e vão entre coxins, largura do coxim, altura do rodapé</div>
+                            <div class="resource-desc">Altura total, quantidade e vão entre coxins, largura do coxim, altura do rodapé.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">Opções de montagem</div>
                             <div class="resource-desc">Métodos Construtivos: Tampo/Travessa/Coxim/Externo</div>
                             <div class="resource-desc">Base: apoiada/encostada/rodapé</div>
                             <div class="resource-desc">Topo: apoiado/encostado</div>
-                            <div class="resource-desc">Fundo: pregado/rasgado/rebaixado/sem fundo/Laterias rasgadas/Laterias rebaixadas</div>
+                            <div class="resource-desc">Fundo: pregado/rasgado/rebaixado/sem fundo/Laterais rasgadas/Laterais rebaixadas</div>
                             <div class="resource-desc">Travessas dianteiras e traseiras: opção de engrosso individual</div>
                         </div>
                     </div>
@@ -451,39 +450,57 @@
                         <h3>Plugins Exclusivos</h3>
                         <div class="resource-item">
                             <div class="resource-title">Menu MOBPRO</div>
-                            <div class="resource-desc">Interface exclusiva para edição dos Blocos da Biblioteca MOBPRO (não são editados no menu nativo do SketchUp)</div>
+                            <div class="resource-desc">Interface exclusiva para edição dos Blocos da Biblioteca MOBPRO (não são editados no menu nativo do SketchUp).</div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-title">MOBPRO</div>
-                            <div class="resource-desc">Trocar Material, Inserir/Remover/Criar Camada, Tornar único recursivo, Ajustar Textura (fora de escala)</div>
+                            <div class="resource-title">MOBPRO Materiais e Camadas</div>
+                            <div class="resource-desc">Trocar Material, Inserir/Remover/Criar/Trocar Camada, Tornar único recursivo, Ajustar Textura (fora de escala).</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">MOBPRO - Inserir bloco</div>
-                            <div class="resource-desc">Interface amigável para pesquisa e inserção de blocos em posições específicas</div>
+                            <div class="resource-desc">Interface amigável para pesquisa e inserção de blocos em posições específicas.</div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-title">MOBPRO - Miniaturas</div>
-                            <div class="resource-desc">Interface para geração de miniaturas dos blocos</div>
+                            <div class="resource-title">MOBPRO - Troca Componente</div>
+                            <div class="resource-desc">Interface para troca de blocos mantendo dimensões externas.</div>
                         </div>
                         <div class="resource-item">
                             <div class="resource-title">MOBPRO - Rotação de Texturas</div>
-                            <div class="resource-desc">Permite rotacionar texturas dos blocos sem alterar os eixos (apenas visualmente)</div>
+                            <div class="resource-desc">Permite rotacionar texturas dos blocos sem alterar os eixos (apenas visualmente).</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Definir categorias</div>
+                            <div class="resource-desc">Permite definir categorias na seleção, pra selecionar de forma rápida.</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Enscape Materiais</div>
+                            <div class="resource-desc">Permite configurações rápidas de material para usar com renderizador Enscape (não incluso).</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Nome do Módulo</div>
+                            <div class="resource-desc">Permite adicionar nome de cliente, ambiente e módulos pra facilitar na identificação das peças.</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Limpeza Router</div>
+                            <div class="resource-desc">Permite explodir as peças, limpar as não usadas, e remover aninhamento para uso com plugins de terceiros para inserir furações.</div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-title">MOBPRO - Limpar texturas das faces</div>
+                            <div class="resource-desc">Permite limpar todas as texturas aplicadas nas faces, no modelo ou seleção.</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 60px;">
-            <div class="contact-buttons">
-                <a href="https://wa.me/18996665019" class="cta-button">FALE NO WHATSAPP</a>
-                <a href="https://t.me/elvismeiado" class="telegram-button">FALE NO TELEGRAM</a>
-            </div>
-            <p class="price-installments">Promoção válida por tempo limitado</p>
+
+        <div class="contact-buttons">
+            <a href="https://wa.me/18996665019" class="cta-button">FALE NO WHATSAPP</a>
+            <a href="https://t.me/elvismeiado" class="telegram-button">FALE NO TELEGRAM</a>
         </div>
+        <footer>
+            <p>© 2025 MOBPRO | Contato: mobprosketchup@gmail.com</p>
+        </footer>
     </div>
-    <footer>
-        <p>© 2025 MOBPRO | Contato: mobprosketchup@gmail.com</p>
-    </footer>
     <script>
         function openTab(evt, tabName) {
             var i, tabcontent, tabbuttons;
@@ -498,7 +515,6 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-        // Inicializa com a aba de benefícios aberta
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('beneficios').classList.add('active');
             document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
