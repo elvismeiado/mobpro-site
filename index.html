@@ -3,477 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOBPRO | Suites Profissionais para Marcenaria</title>
-    <meta name="description" content="Plugins e Blocos Dinâmicos MOBPRO. Escolha a Suite ideal para sua produção.">
+    <title>MOBPRO Suite - A Solução Completa para Marcenaria no SketchUp</title>
     <style>
-        /* --- DESIGN SYSTEM MODERNO --- */
+        /* RESET E VARIÁVEIS DE COR */
         :root {
-            --primary: #0f172a;
-            --primary-light: #334155;
-            --brand: #0ea5e9;
-            --accent: #10b981;
-            --accent-dark: #059669;
-            --purple: #8b5cf6;
-            --warning-bg: #fffbeb;
-            --warning-border: #fcd34d;
-            --warning-text: #92400e;
-            --bg-body: #f8fafc;
-            --white: #ffffff;
-            --radius: 16px;
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+            --primary-blue: #0d6efd;
+            --primary-blue-hover: #0b5ed7;
+            --border-color: #dee2e6;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --success-green: #198754;
+            --telegram-blue: #0088cc;
+            --whatsapp-green: #25D366;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            color: var(--primary-light);
-            background-color: var(--bg-body);
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .text-center { text-align: center; }
-        .section { padding: 80px 0; }
-        
-        /* --- HEADER HERO --- */
-        header {
-            background: linear-gradient(180deg, var(--primary) 0%, #1e293b 100%);
-            color: white;
-            padding: 80px 0 140px;
-            text-align: center;
+        /* NAVEGAÇÃO / TABS */
+        nav {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
-        header h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; line-height: 1.1; }
-        header p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
-        /* --- VÍDEO --- */
-        .video-container { margin-top: -100px; position: relative; z-index: 10; margin-bottom: 60px; }
-        .video-wrapper {
-            background: #000;
-            border-radius: var(--radius);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 4px solid white;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            position: relative;
-        }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .playlist-tag { background: white; color: var(--primary); padding: 10px 20px; border-radius: 12px 12px 0 0; font-weight: bold; display: inline-block; }
-
-        /* --- AVISO TÉCNICO --- */
-        .tech-alert {
-            background: var(--warning-bg);
-            border: 2px solid var(--warning-border);
-            color: var(--warning-text);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 50px;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
-            font-size: 1rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 1rem 2rem;
         }
-        .tech-alert i { font-size: 2rem; }
 
-        /* --- PRICING GRID --- */
-        .pricing-section h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
-        .pricing-section p { margin-bottom: 50px; color: var(--primary-light); }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-blue);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        /* CONTEÚDO DAS ABAS */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            align-items: start;
+            gap: 2rem;
         }
 
-        .plan-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 30px;
-            border: 1px solid #e2e8f0;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+        .pricing-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
         }
 
-        .plan-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-        .plan-card.featured { border: 2px solid var(--brand); background: linear-gradient(to bottom, #ffffff, #f0f9ff); transform: scale(1.03); z-index: 2; }
-        .plan-card.featured:hover { transform: scale(1.05); }
-        .plan-card.premium { border: 2px solid var(--purple); background: linear-gradient(to bottom, #ffffff, #f5f3ff); }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
 
-        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 6px 16px; border-radius: 50px; color: white; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
-        .badge-blue { background: var(--brand); }
-        .badge-purple { background: var(--purple); }
+        .pricing-card.highlight {
+            border: 2px solid var(--primary-blue);
+        }
 
-        .plan-title { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
-        .plan-desc { font-size: 0.9rem; margin-bottom: 20px; min-height: 45px; }
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            min-height: 45px;
+        }
+
+        .price-adhesion {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .price-monthly {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-monthly span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .price-extra {
+            font-size: 0.85rem;
+            color: var(--success-green);
+            font-weight: 600;
+            background-color: rgba(25, 135, 84, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .features-list li {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .features-list li.bold-feature {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-blue-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
         
-        .price-box { margin: 20px 0; border-top: 1px dashed #cbd5e1; padding-top: 20px; }
-        .price-de { text-decoration: line-through; color: #94a3b8; font-size: 0.9rem; }
-        .price-installments { font-size: 1.8rem; font-weight: 800; color: var(--primary); display: block; }
-        .pix-tag { background: #dcfce7; color: #166534; padding: 8px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 10px; text-align: center; }
+        .pricing-disclaimer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-        .features { list-style: none; margin: 25px 0; flex-grow: 1; }
-        .features li { padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; display: flex; align-items: flex-start; }
-        .features li i { margin-right: 10px; font-weight: bold; }
-        .check { color: var(--accent); }
-        .plus { color: var(--brand); font-weight: 800; }
-        .purple-check { color: var(--purple); }
-
-        .btn { display: block; width: 100%; padding: 16px; border-radius: 10px; text-align: center; font-weight: 700; text-decoration: none; margin-top: auto; transition: 0.3s; cursor: pointer; }
-        .btn-basic { background: white; border: 2px solid var(--primary); color: var(--primary); }
-        .btn-basic:hover { background: var(--primary); color: white; }
-        .btn-featured { background: var(--brand); color: white; border: none; }
-        .btn-featured:hover { background: #0284c7; }
-        .btn-premium { background: var(--purple); color: white; border: none; }
-        .btn-premium:hover { background: #7c3aed; }
-
-        /* --- DETALHAMENTO DE RECURSOS --- */
-        .details-section { background-color: white; padding: 80px 0; border-top: 1px solid #e2e8f0; margin-top: 60px; }
-        .details-title { text-align: center; margin-bottom: 60px; }
-        .details-title h2 { font-size: 2rem; color: var(--primary); }
-        
-        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; }
-        .detail-category h3 { color: var(--brand); font-size: 1.4rem; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 10px; }
-        .detail-item { margin-bottom: 25px; }
-        .detail-name { font-weight: 700; color: var(--primary); font-size: 1.05rem; display: block; margin-bottom: 4px; }
-        .detail-desc { font-size: 0.95rem; color: var(--primary-light); line-height: 1.5; }
-        .plugin-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .plugin-card { background: var(--bg-body); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent); }
-
-        /* --- MODAL DE CONTATO --- */
+        /* MODAL CONTATO */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: modalSlide 0.3s ease-out;
         }
 
-        @keyframes modalSlide {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
         }
 
         .modal-close {
             position: absolute;
-            top: 15px; right: 20px;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #94a3b8;
+            color: var(--text-muted);
         }
 
-        .modal-title { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
-        .modal-desc { color: var(--primary-light); margin-bottom: 30px; }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
 
         .btn-telegram {
-            background: #2AABEE;
-            color: white;
-            padding: 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3);
+            background-color: var(--telegram-blue);
+            margin-bottom: 1rem;
         }
-        .btn-telegram:hover { transform: translateY(-2px); background: #229ED9; }
-        
+        .btn-telegram:hover {
+            background-color: #0073ad;
+        }
+
         .btn-whatsapp {
-            background: transparent;
-            color: #25D366;
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
+            background-color: transparent;
+            color: var(--whatsapp-green);
+            border: 2px solid var(--whatsapp-green);
+        }
+        .btn-whatsapp:hover {
+            background-color: var(--whatsapp-green);
+            color: white;
+        }
+
+        .modal-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .faq-item {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* DOCS SECTION (Aba Secundária) */
+        .docs-section {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        /* YOUTUBE PLAYLIST GRID */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .doc-module {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .doc-module h3 {
+            color: var(--primary-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            border: 2px solid #25D366;
-            transition: all 0.2s;
+            gap: 10px;
         }
-        .btn-whatsapp:hover { background: #25D366; color: white; }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .doc-item h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
 
         /* FOOTER */
-        footer { background: #1e293b; color: #94a3b8; padding: 50px 0; text-align: center; font-size: 0.9rem; }
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
 
         @media (max-width: 768px) {
-            .plan-card.featured { transform: scale(1); }
-            .details-grid { grid-template-columns: 1fr; }
-            .tech-alert { flex-direction: column; text-align: center; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .tabs { gap: 1rem; }
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>MOBPRO</h1>
-            <p>A solução completa para transformar projetos no SketchUp em produção real.</p>
-        </div>
-    </header>
-
-    <div class="container video-container">
-        <div class="text-center">
-            <span class="playlist-tag">🎬 Veja a Suite MOBPRO em ação</span>
-        </div>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7" title="MOBPRO Playlist" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="tech-alert">
-            <i>⚠️</i>
-            <div>
-                <strong>Aviso Importante:</strong>
-                <p>Todos os recursos de Edição dos blocos dependem do <strong>PLUGIN Menu MOBPRO</strong>. Não é possível editar via menu nativo.</p>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MOBPRO <span>Suite</span></div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('planos', this)">Planos e Preços</button>
+                <button class="tab-btn" onclick="switchTab('documentacao', this)">Recursos e Vídeos</button>
             </div>
         </div>
+    </nav>
 
-        <div class="pricing-section text-center">
-            <h2>Escolha sua Suite</h2>
-            <p>Planos escaláveis para cada etapa da sua marcenaria.</p>
+    <main id="planos" class="tab-content active">
+        
+        <section class="hero">
+            <h1>A engenharia por trás do seu projeto</h1>
+            <p>O ecossistema definitivo de Marcenaria para SketchUp. Otimizador de corte nativo, gerador de etiquetas, orçamentos automáticos e usinagem CNC, sem engessar sua criatividade.</p>
+        </section>
 
+        <section class="pricing-section">
             <div class="pricing-grid">
-                <div class="plan-card">
-                    <div class="plan-title">MOBPRO SUITE Basic</div>
-                    <div class="plan-desc">Focado em corte e borda.</div>
-                    <div class="price-box">
-                        <span class="price-de">De R$ 5.000,00</span>
-                        <span class="price-installments">12x R$ 275,00</span>
-                        <div class="pix-tag">R$ 2.970,00 no PIX (10% OFF)</div>
-                    </div>
-                    <ul class="features">
-                        <li><i class="check">✓</i> Foco: Corte e Borda</li>
-                        <li><i class="check">✓</i> Biblioteca Completa</li>
-                        <li><i class="check">✓</i> Plugin Menu MOBPRO</li>
-                        <li><i class="check">✓</i> Otimização OpenCutList</li>
+                
+                <div class="pricing-card">
+                    <h2 class="card-title">MOBPRO Suite</h2>
+                    <p class="card-desc">Focado em arquitetos e projetistas que exigem agilidade em planos de corte, orçamentos e detalhamento construtivo.</p>
+                    
+                    <div class="price-adhesion">Adesão (Setup e Biblioteca): R$ 1.490,00</div>
+                    <div class="price-monthly">R$ 149,00<span>/mês</span></div>
+                    <div class="price-extra">Licença Extra: +R$ 50,00/mês</div>
+                    
+                    <ul class="features-list">
+                        <li>Incluso 2 licenças de uso</li>
+                        <li>Biblioteca Dinâmica Completa</li>
+                        <li>Plugin Menu MOBPRO</li>
+                        <li class="bold-feature">Plano de Corte Otimizado Nativo (Simplificado)</li>
+                        <li>Geração de Orçamentos e Etiquetas (PIMACO)</li>
+                        <li>Compatibilidade total com OpenCutList</li>
                     </ul>
-                    <button class="btn btn-basic" onclick="openContactModal('Basic')">Escolher Basic</button>
+                    <button class="btn btn-outline" onclick="openModal('Suite Basic')">Assinar Suite Basic</button>
                 </div>
 
-                <div class="plan-card featured">
-                    <div class="badge badge-blue">RECOMENDADO</div>
-                    <div class="plan-title">MOBPRO SUITE Sólidos</div>
-                    <div class="plan-desc">Focado em corte, borda e <strong>furações manuais</strong>.</div>
-                    <div class="price-box">
-                        <span class="price-de">De R$ 6.060,00</span>
-                        <span class="price-installments">12x R$ 333,33</span>
-                        <div class="pix-tag">R$ 3.600,00 no PIX (10% OFF)</div>
-                    </div>
-                    <ul class="features">
-                        <li><i class="plus">+</i> Tudo da Suite Basic</li>
-                        <li><i class="check">✓</i> <strong>Plugin Sólidos Incluso</strong></li>
-                        <li><i class="check">✓</i> Operações manuais CNC</li>
-                        <li><i class="check">✓</i> Recortes booleanos</li>
+                <div class="pricing-card">
+                    <h2 class="card-title">MOBPRO Sólidos</h2>
+                    <p class="card-desc">Para marcenarias que necessitam de recortes precisos e detalhamento técnico manual avançado.</p>
+                    
+                    <div class="price-adhesion">Adesão (Setup e Biblioteca): R$ 2.890,00</div>
+                    <div class="price-monthly">R$ 249,00<span>/mês</span></div>
+                    <div class="price-extra">Licença Extra: +R$ 100,00/mês</div>
+                    
+                    <ul class="features-list">
+                        <li>Incluso 2 licenças de uso</li>
+                        <li>Tudo do plano Suite Basic</li>
+                        <li class="bold-feature">Plugin Sólidos Incluso</li>
+                        <li>Recortes manuais complexos</li>
+                        <li>Múltipla seleção preservando nomes e estrutura</li>
                     </ul>
-                    <button class="btn btn-featured" onclick="openContactModal('Solidos')">Escolher Sólidos</button>
+                    <button class="btn btn-outline" onclick="openModal('Sólidos')">Assinar Sólidos</button>
                 </div>
 
-                <div class="plan-card premium">
-                    <div class="badge badge-purple">AUTOMAÇÃO</div>
-                    <div class="plan-title">MOBPRO SUITE Furações</div>
-                    <div class="plan-desc">Focado em <strong>automação de recortes</strong> e usinagem.</div>
-                    <div class="price-box">
-                        <span class="price-de">De R$ 7.580,00</span>
-                        <span class="price-installments">12x R$ 416,67</span>
-                        <div class="pix-tag">R$ 4.500,00 no PIX (10% OFF)</div>
-                    </div>
-                    <ul class="features">
-                        <li><i class="plus">+</i> Tudo da Suite Sólidos</li>
-                        <li><i class="purple-check">✓</i> <strong>Plugin Furações Incluso</strong></li>
-                        <li><i class="purple-check">✓</i> Recortadores automáticos</li>
-                        <li><i class="purple-check">✓</i> Edição não destrutiva</li>
+                <div class="pricing-card highlight">
+                    <div class="badge">AUTOMAÇÃO CNC</div>
+                    <h2 class="card-title">MOBPRO Furações</h2>
+                    <p class="card-desc">O motor industrial definitivo. Focado em automação total para marcenarias com centro de usinagem (CNC).</p>
+                    
+                    <div class="price-adhesion">Adesão (Setup e Biblioteca): R$ 4.900,00</div>
+                    <div class="price-monthly">R$ 390,00<span>/mês</span></div>
+                    <div class="price-extra">Licença Extra: +R$ 150,00/mês</div>
+                    
+                    <ul class="features-list">
+                        <li>Incluso 3 licenças de uso</li>
+                        <li>Tudo do plano Sólidos</li>
+                        <li class="bold-feature">Plugin Furações e Dispositivos Incluso</li>
+                        <li class="bold-feature">Plano de Corte Completo (com furações e exportação DXF)</li>
+                        <li>Edição de usinagem não destrutiva</li>
+                        <li>Plugin Limpeza Router (Preparação CNC)</li>
                     </ul>
-                    <button class="btn btn-premium" onclick="openContactModal('Furacoes')">Escolher Furações</button>
+                    <button class="btn" onclick="openModal('Furações')">Assinar Furações</button>
+                </div>
+
+            </div>
+            
+            <p class="pricing-disclaimer">
+                * O licenciamento dos plugins é registrado por máquina (não transferível). Você adquire uma licença anual, cuja renovação é feita anualmente, com possibilidade de reajuste.
+            </p>
+        </section>
+
+        <section class="faq-section">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">O que é a Taxa de Adesão?</div>
+                <div class="faq-answer">A adesão é o valor referente ao licenciamento inicial, setup e direito de download de toda a nossa biblioteca dinâmica construtiva. Uma vez paga, a estrutura base da biblioteca é sua.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Como funciona a validade da licença e a renovação?</div>
+                <div class="faq-answer">Atualmente, o nosso sistema de registro é feito de forma individual por máquina. Ao assinar a MOBPRO, você adquire uma licença anual de uso das Ferramentas. A renovação para os anos seguintes é feita pelo usuário em contato com nossa equipe. Enquanto a assinatura estiver em dia, seus plugins e biblioteca continuam funcionando e recebendo atualizações.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">O que acontece se eu não quiser renovar a licença anual?</div>
+                <div class="faq-answer">Seus projetos já criados não são perdidos e a biblioteca continuará no seu SketchUp. No entanto, sem a licença ativa, os plugins exclusivos (Menu MOBPRO, Otimizador de Corte Nativo, Orçamentos, Sólidos, Furações) serão bloqueados, retornando o seu fluxo ao processo manual e nativo do SketchUp (sem edições no menu nativo).</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como funciona a contratação de licenças (máquinas) extras?</div>
+                <div class="faq-answer">Cada plano possui um número de licenças base registradas (2 para Suite/Sólidos e 3 para Furações). Caso sua equipe cresça, você não precisa pagar uma nova adesão. Basta solicitar o registro de uma máquina extra, pagando apenas o acréscimo mensal correspondente ao seu nível (Ex: +R$ 50,00 no plano Suite).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Posso ter uma biblioteca personalizada pro meu metodo construtivo?</div>
+                <div class="faq-answer">A biblioteca é unificada pra todos os usuários, e detém muitos metodos, mas não garantimos personalização individual sem custos, apenas análise de caso.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">As usinagens são paramétricas e se ajustam aos blocos?</div>
+                <div class="faq-answer">Não, nós prezamos pelo controle total do usuário, e entendemos que por se tratar de etapa final da produção, inserir com plugins é a melhor solução em um projeto já pronto e definido, garantindo com isso eliminação de erros.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Como funciona o suporte e implantação?</div>
+                <div class="faq-answer">Na MOBPRO todo o sistema de implantação e suporte é humanizado, temos uma serie de vídeos dedicados pra ensino, e também o telegram a disposição para tirar dúvidas referentes aos Plugins ou Biblioteca.</div>
+            </div>
+        </section>
+    </main>
+
+    <main id="documentacao" class="tab-content docs-section">
+        
+        <h2 class="section-title">Veja a MOBPRO em Ação</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Acompanhe a nossa playlist oficial e descubra o poder de automação que o ecossistema oferece.</p>
+
+        <div class="video-grid">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/videoseries?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7" title="MOBPRO Suite Recursos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="doc-module">
+            <h3>⚙️ Engenharia e Automação CNC</h3>
+            <div class="doc-grid">
+                <div class="doc-item">
+                    <h4>Inserir Furações</h4>
+                    <p>O coração da automação CNC. Insira dispositivos e furações automaticamente usando lógicas de recortadores, permitindo edições não destrutivas.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>Operações de Sólidos</h4>
+                    <p>Módulo de recortes em massa. Selecione múltiplos componentes simultaneamente para subtrações ou recortes precisas, mantendo a integridade dos nomes originais para a lista de corte.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>Preparação CNC (Limpeza Router)</h4>
+                    <p>Plugin utilitário focado no maquinário. Explode peças aninhadas de forma segura, limpa texturas e ajusta a geometria limpa para a leitura perfeita do seu software de Nesting/Router.</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <section class="details-section">
-        <div class="container">
-            <div class="details-title">
-                <h2>Recursos Detalhados da Biblioteca</h2>
-                <p>Veja tudo o que você pode fazer com o ecossistema MOBPRO</p>
-            </div>
-
-            <div class="details-grid">
-                <div>
-                    <div class="detail-category">
-                        <h3>📐 Edição e Otimização</h3>
-                        <div class="detail-item">
-                            <span class="detail-name">Edição completa de medidas</span>
-                            <span class="detail-desc">Largura, altura, profundidade e espessuras configuráveis separadamente.</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-name">Otimização para OpenCutList</span>
-                            <span class="detail-desc">Veios já no sentido correto, sem necessidade de orientação automática.</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-name">Renomeação segura</span>
-                            <span class="detail-desc">Renomeie peças sem causar erros de estrutura no componente dinâmico.</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-name">Itens Avulsos e Acessórios</span>
-                            <span class="detail-desc">5 campos para nomear acessórios e especificar quantidades manualmente.</span>
-                        </div>
-                    </div>
-
-                    <div class="detail-category" style="margin-top: 40px;">
-                        <h3>🗄️ Construtivo e Caixaria</h3>
-                        <div class="detail-item">
-                            <span class="detail-name">Fechamento dinâmico e rodapé</span>
-                            <span class="detail-desc">Configuração de comprimento, opção interno/externo, ocultação individual.</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-name">Coxim Misto</span>
-                            <span class="detail-desc">Ocultação superior/inferior individual, configuração de recuo.</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-name">Opções de Montagem</span>
-                            <span class="detail-desc">Tampo/Travessa/Coxim/Externo. Base e Topo configuráveis.</span>
-                        </div>
-                    </div>
+        <div class="doc-module">
+            <h3>📊 Gestão de Produção Nativa</h3>
+            <div class="doc-grid">
+                <div class="doc-item">
+                    <h4>Otimizador de Plano de Corte Próprio</h4>
+                    <p>A MOBPRO possui um motor nativo para gerar planos de corte altamente eficientes diretamente do seu projeto no SketchUp. Contamos com editor de furações e várias opções de otimização de corte (conforme licença ativa).</p>
                 </div>
-
-                <div>
-                    <div class="detail-category">
-                        <h3>🛠️ Plugins Exclusivos MOBPRO</h3>
-                        <div class="plugin-list">
-                            <div class="plugin-card">
-                                <span class="detail-name">Menu MOBPRO</span>
-                                <span class="detail-desc">Interface exclusiva para edição dos Blocos (substitui menu nativo).</span>
-                            </div>
-                            <div class="plugin-card">
-                                <span class="detail-name">Materiais e Camadas</span>
-                                <span class="detail-desc">Troca Material, Gerencia Camadas, Ajusta Textura fora de escala.</span>
-                            </div>
-                            <div class="plugin-card">
-                                <span class="detail-name">Rotação de Texturas</span>
-                                <span class="detail-desc">Rotaciona texturas visualmente sem alterar eixos do componente.</span>
-                            </div>
-                            <div class="plugin-card">
-                                <span class="detail-name">Enscape Materiais</span>
-                                <span class="detail-desc">Configurações rápidas para renderização realista.</span>
-                            </div>
-                            <div class="plugin-card">
-                                <span class="detail-name">Limpeza Router</span>
-                                <span class="detail-desc">Explode peças, limpa texturas e remove aninhamento para CNC.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="detail-category" style="margin-top: 40px;">
-                        <h3>⚙️ Módulos de Usinagem</h3>
-                        <div class="plugin-card" style="border-left-color: var(--brand);">
-                            <span class="detail-name">Plugin Sólidos</span>
-                            <span class="detail-desc">Recortes manuais (booleanas), múltipla seleção, mantendo nomes.</span>
-                        </div>
-                        <div class="plugin-card" style="border-left-color: var(--purple); margin-top: 15px;">
-                            <span class="detail-name">Plugin Furações</span>
-                            <span class="detail-desc">Recortes automáticos via "recortadores", edição não destrutiva.</span>
-                        </div>
-                    </div>
+                <div class="doc-item">
+                    <h4>Orçamentos Automáticos</h4>
+                    <p>Gere orçamentos detalhados com base no consumo de chapas, fitas de borda, ferragens e acessórios calculados em tempo real pela biblioteca dinâmica, com opção de inserir margens e cobrar custos de sobra, além de inserir custos extras.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>Geração de Etiquetas (PIMACO e térmicas)</h4>
+                    <p>Sistema integrado para impressão de etiquetas profissionais padrão PIMACO, garantindo organização impecável na montagem e identificação de peças no chão de fábrica.</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="doc-module">
+            <h3>📐 Edição e Detalhamento Construtivo</h3>
+            <div class="doc-grid">
+                <div class="doc-item">
+                    <h4>Menu MOBPRO Exclusivo</h4>
+                    <p>Interface dedicada que substitui o menu nativo do SketchUp permitindo operações matemáticas, garantindo estabilidade absoluta e velocidade na edição dos blocos dinâmicos com seleção multipla de blocos.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>Compatibilidade OpenCutList</h4>
+                    <p>Apesar do nosso motor nativo, a biblioteca MOBPRO mantém otimização total para gerar listas de corte perfeitas no OpenCutList, caso seja o seu fluxo de preferência.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>Biblioteca de Módulos Inteligente com mais de 200 blocos prontos</h4>
+                    <p>Controle de recuos, fechamentos, rodapés e coxins mistos. Opções paramétricas para transições imediatas entre Tampo, Travessa ou estrutura Externa. Possibilidade de criação de novos blocos utilizando os itens de auto ajuste.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
 
     <footer>
-        <div class="container">
-            <p style="font-size: 0.8rem; opacity: 0.7;">© 2026 MOBPRO | Contato: mobprosketchup@gmail.com<br>
-            *Descontos PIX na adesão. Renovação sujeita às taxas vigentes.</p>
-        </div>
+        <p>&copy; 2026 MOBPRO Suite. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px;">Contato e Suporte Técnico: mobprosketchup@gmail.com</p>
     </footer>
 
-    <div id="contactModal" class="modal-overlay" onclick="closeContactModal(event)">
+    <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeModalBtn()">×</span>
-            <div class="modal-title">Finalizar Pedido</div>
-            <p class="modal-desc">Escolha onde prefere falar com nosso suporte para garantir sua licença <strong><span id="planName"></span></strong>.</p>
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-title">Escolha um canal para atendimento humano e fechamento da sua licença <span id="planNameDisplay"></span></div>
+            <p class="modal-desc">Recomendamos o Telegram, pois todo o nosso suporte oficial e comunidade acontecem por lá.</p>
             
-            <a href="#" id="telegramLink" target="_blank" class="btn-telegram">
-                <span style="margin-right: 10px;">✈️</span> Falar no Telegram (Recomendado)
-            </a>
-            
-            <a href="#" id="whatsappLink" target="_blank" class="btn-whatsapp">
-                <span style="margin-right: 10px;">💬</span> Falar no WhatsApp
-            </a>
+            <a href="#" id="linkTelegram" target="_blank" class="btn btn-telegram">Continuar no Telegram (Recomendado)</a>
+            <a href="#" id="linkWhatsapp" target="_blank" class="btn btn-whatsapp">Continuar no WhatsApp</a>
         </div>
     </div>
 
     <script>
-        // Dados de contato
-        const telegramUser = "elvismeiado";
-        const whatsappNumber = "5518996665019"; // Formato Internacional sem +
+        // FUNÇÃO DE TROCA DE ABAS
+        function switchTab(tabId, element) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            element.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
 
-        function openContactModal(plan) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // FUNÇÕES DO MODAL E REDIRECIONAMENTO
+        let currentPlan = '';
+
+        function openModal(planName) {
+            currentPlan = planName;
+            document.getElementById('planNameDisplay').textContent = currentPlan;
+            
+            // Parametriza as URLs de contato com a mensagem dinâmica
+            const message = encodeURIComponent(`Olá, gostaria de assinar o plano MOBPRO ${currentPlan} e realizar meu setup.`);
+            
+            const urlTelegram = `https://t.me/elvismeiado?text=${message}`;
+            const urlWhatsapp = `https://wa.me/5518996665019?text=${message}`;
+            
+            document.getElementById('linkTelegram').href = urlTelegram;
+            document.getElementById('linkWhatsapp').href = urlWhatsapp;
+
+            document.getElementById('contactModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+
+        // Fecha o modal se clicar fora dele
+        window.onclick = function(event) {
             const modal = document.getElementById('contactModal');
-            const planSpan = document.getElementById('planName');
-            const teleLink = document.getElementById('telegramLink');
-            const whatsLink = document.getElementById('whatsappLink');
-            
-            // Define o nome do plano para exibição
-            let planText = "";
-            let msg = "";
-            
-            if(plan === 'Basic') {
-                planText = "Suite Basic";
-                msg = "Olá! Gostaria de adquirir a MOBPRO Suite Basic.";
-            } else if (plan === 'Solidos') {
-                planText = "Suite Sólidos";
-                msg = "Olá! Gostaria de adquirir a MOBPRO Suite Sólidos.";
-            } else if (plan === 'Furacoes') {
-                planText = "Suite Furações";
-                msg = "Olá! Gostaria de adquirir a MOBPRO Suite Furações.";
-            }
-
-            planSpan.textContent = planText;
-            
-            // Links dinâmicos
-            teleLink.href = `https://t.me/${telegramUser}`;
-            whatsLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-
-            // Abre modal
-            modal.style.display = "flex";
-        }
-
-        function closeModalBtn() {
-            document.getElementById('contactModal').style.display = "none";
-        }
-
-        function closeContactModal(event) {
-            if (event.target.id === 'contactModal') {
-                closeModalBtn();
+            if (event.target == modal) {
+                closeModal();
             }
         }
     </script>
