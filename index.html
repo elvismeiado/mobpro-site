@@ -19,6 +19,7 @@
             --success-green: #198754;
             --telegram-blue: #0088cc;
             --whatsapp-green: #25D366;
+            --highlight-orange: #fd7e14;
         }
 
         * {
@@ -393,7 +394,7 @@
 
         /* DOCS SECTION (Aba Secundária) */
         .docs-section {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 4rem auto;
             padding: 0 2rem;
         }
@@ -403,7 +404,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .video-container {
@@ -424,39 +425,142 @@
             border: 0;
         }
 
+        /* DESTAQUE DA BIBLIOTECA */
+        .library-highlight {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #004085 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .library-highlight h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .library-highlight p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .library-highlight .highlight-badge {
+            background-color: var(--highlight-orange);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .library-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        .library-feature-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .library-feature-item h4 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .library-feature-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* LISTAGEM DE RECURSOS DOS PLUGINS */
+        .plugins-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
         .doc-module {
             background-color: var(--bg-white);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 2rem;
-            margin-bottom: 2rem;
             box-shadow: var(--shadow-sm);
         }
 
         .doc-module h3 {
             color: var(--primary-blue);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-list-detailed {
+            list-style: none;
+        }
+
+        .feature-list-detailed li {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .feature-list-detailed li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .feature-list-detailed h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+        }
+        
+        .feature-list-detailed h4::before {
+            content: '■';
+            color: var(--primary-blue);
+            font-size: 0.8rem;
+            margin-right: 8px;
         }
 
-        .doc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .doc-item h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .doc-item p {
+        .feature-list-detailed p {
             color: var(--text-muted);
             font-size: 0.9rem;
+            line-height: 1.5;
+            padding-left: 1.2rem;
+        }
+
+        /* BACKGROUND ITEMS (Itens que operam em segundo plano) */
+        .bg-feature h4 {
+            color: var(--text-muted);
+        }
+        .bg-feature h4::before {
+            content: '⚙';
+            color: var(--text-muted);
+            font-size: 1rem;
         }
 
         /* FOOTER */
@@ -475,8 +579,10 @@
 
         @media (max-width: 768px) {
             .pricing-grid { grid-template-columns: 1fr; }
-            .tabs { gap: 1rem; }
+            .tabs { gap: 1rem; flex-wrap: wrap; justify-content: center;}
             .video-grid { grid-template-columns: 1fr; }
+            .library-highlight { padding: 2rem 1rem; }
+            .library-highlight h3 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -614,58 +720,163 @@
             </div>
         </div>
 
-        <div class="doc-module">
-            <h3>⚙️ Engenharia e Automação CNC</h3>
-            <div class="doc-grid">
-                <div class="doc-item">
-                    <h4>Inserir Furações</h4>
-                    <p>O coração da automação CNC. Insira dispositivos e furações automaticamente usando lógicas de recortadores, permitindo edições não destrutivas.</p>
+        <div class="library-highlight">
+            <div class="highlight-badge">Destaque Exclusivo</div>
+            <h3>📦 A Biblioteca de Blocos Dinâmicos</h3>
+            <p>Mais de <strong>200 blocos prontos e inteligentes</strong> que formam a espinha dorsal do seu projeto. Uma biblioteca paramétrica desenhada para controle total da engenharia do móvel.</p>
+            
+            <div class="library-features">
+                <div class="library-feature-item">
+                    <h4>Inserir Blocos (3 Formas)</h4>
+                    <p>Via setas da interface, 2 cliques com posicionamento manual (rotação no eixo azul), e via Mira (específico para itens com auto ajuste na caixa matriz).</p>
                 </div>
-                <div class="doc-item">
-                    <h4>Operações de Sólidos</h4>
-                    <p>Módulo de recortes em massa. Selecione múltiplos componentes simultaneamente para subtrações ou recortes precisas, mantendo a integridade dos nomes originais para a lista de corte.</p>
+                <div class="library-feature-item">
+                    <h4>Módulos Inteligentes</h4>
+                    <p>Controle de recuos, fechamentos, rodapés e coxins mistos. Transições paramétricas imediatas entre Tampo, Travessa ou estrutura Externa.</p>
                 </div>
-                <div class="doc-item">
-                    <h4>Preparação CNC (Limpeza Router)</h4>
-                    <p>Plugin utilitário focado no maquinário. Explode peças aninhadas de forma segura, limpa texturas e ajusta a geometria limpa para a leitura perfeita do seu software de Nesting/Router.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="doc-module">
-            <h3>📊 Gestão de Produção Nativa</h3>
-            <div class="doc-grid">
-                <div class="doc-item">
-                    <h4>Otimizador de Plano de Corte Próprio</h4>
-                    <p>A MOBPRO possui um motor nativo para gerar planos de corte altamente eficientes diretamente do seu projeto no SketchUp. Contamos com editor de furações e várias opções de otimização de corte (conforme licença ativa).</p>
-                </div>
-                <div class="doc-item">
-                    <h4>Orçamentos Automáticos</h4>
-                    <p>Gere orçamentos detalhados com base no consumo de chapas, fitas de borda, ferragens e acessórios calculados em tempo real pela biblioteca dinâmica, com opção de inserir margens e cobrar custos de sobra, além de inserir custos extras.</p>
-                </div>
-                <div class="doc-item">
-                    <h4>Geração de Etiquetas (PIMACO e térmicas)</h4>
-                    <p>Sistema integrado para impressão de etiquetas profissionais padrão PIMACO, garantindo organização impecável na montagem e identificação de peças no chão de fábrica.</p>
+                <div class="library-feature-item">
+                    <h4>Flexibilidade e Criação</h4>
+                    <p>A arquitetura permite a criação de novos blocos personalizados utilizando os itens e componentes de auto ajuste nativos da biblioteca.</p>
                 </div>
             </div>
         </div>
 
-        <div class="doc-module">
-            <h3>📐 Edição e Detalhamento Construtivo</h3>
-            <div class="doc-grid">
-                <div class="doc-item">
-                    <h4>Menu MOBPRO Exclusivo</h4>
-                    <p>Interface dedicada que substitui o menu nativo do SketchUp permitindo operações matemáticas, garantindo estabilidade absoluta e velocidade na edição dos blocos dinâmicos com seleção multipla de blocos.</p>
-                </div>
-                <div class="doc-item">
-                    <h4>Compatibilidade OpenCutList</h4>
-                    <p>Apesar do nosso motor nativo, a biblioteca MOBPRO mantém otimização total para gerar listas de corte perfeitas no OpenCutList, caso seja o seu fluxo de preferência.</p>
-                </div>
-                <div class="doc-item">
-                    <h4>Biblioteca de Módulos Inteligente com mais de 200 blocos prontos</h4>
-                    <p>Controle de recuos, fechamentos, rodapés e coxins mistos. Opções paramétricas para transições imediatas entre Tampo, Travessa ou estrutura Externa. Possibilidade de criação de novos blocos utilizando os itens de auto ajuste.</p>
-                </div>
+        <h2 class="section-title" style="font-size: 1.8rem; margin-top: 4rem;">O Ecossistema de Plugins</h2>
+        
+        <div class="plugins-container">
+            
+            <div class="doc-module">
+                <h3>📁 Organização e Estrutura</h3>
+                <ul class="feature-list-detailed">
+                    <li>
+                        <h4>Renomear</h4>
+                        <p>Ferramenta para Renomear Peças (atributo DC Name) em peças múltiplas simultaneamente.</p>
+                    </li>
+                    <li>
+                        <h4>Face Aninhada</h4>
+                        <p>Plugin para seleção avançada de faces de forma direta, independentemente do nível de aninhamento da geometria.</p>
+                    </li>
+                    <li>
+                        <h4>Categorias</h4>
+                        <p>Sistema de configuração de tags para seleção rápida, identificação de posição de fitas de borda (aplicação automática), troca de componentes e inserção em lote de furações.</p>
+                    </li>
+                    <li>
+                        <h4>Nome Módulo</h4>
+                        <p>Atribuição rápida de nomenclatura estrutural para módulos completos (insere a sigla recursivamente identificando todas as peças do mesmo módulo).</p>
+                    </li>
+                    <li>
+                        <h4>Materiais</h4>
+                        <p>Gestão e aplicação de texturas de chapas, fitas de borda e acessórios (por unidade ou lineares). Inclui auxiliares para "tornar único recursivo" e normalizar texturas.</p>
+                    </li>
+                    <li>
+                        <h4>Menu & Seleção</h4>
+                        <p>Interface dedicada (Menu DC) para edição em alta velocidade de blocos dinâmicos. Suporta operações matemáticas, múltipla seleção e filtros avançados para isolar elementos.</p>
+                    </li>
+                </ul>
             </div>
+
+            <div class="doc-module">
+                <h3>🛠️ Edição e Produção</h3>
+                <ul class="feature-list-detailed">
+                    <li>
+                        <h4>Girar Textura</h4>
+                        <p>Controle da orientação do veio da madeira diretamente na face da peça, garantindo que o veio no plano de corte siga sempre o sentido do eixo vermelho (lenx).</p>
+                    </li>
+                    <li>
+                        <h4>Limpar Textura</h4>
+                        <p>Limpeza de textura em 4 modos (todas do modelo, da seleção, as 2 maiores do modelo ou da seleção), preservando as fitas de borda.</p>
+                    </li>
+                    <li>
+                        <h4>Limpeza Geral</h4>
+                        <p>Explode blocos aninhados tornando-os sólidos e exclui entidades ocultas. Destrói o dinamismo do bloco (resultado não editável) para facilitar recortes puros de sólidos.</p>
+                    </li>
+                    <li>
+                        <h4>Trocar Componente</h4>
+                        <p>Substituição dinâmica de módulos e peças no projeto preservando as coordenadas originais de inserção e posicionamento.</p>
+                    </li>
+                    <li>
+                        <h4>Enscape</h4>
+                        <p>Aplica configurações automáticas de material com base na tag de nome, acelerando drasticamente a preparação para renderização.</p>
+                    </li>
+                    <li>
+                        <h4>Plano de Montagem</h4>
+                        <p>Geração automatizada de documentação visual (com siglas e esquemas) para guiar a montagem física do móvel na marcenaria ou obra.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="doc-module">
+                <h3>⚙️ Usinagem e Sólidos</h3>
+                <ul class="feature-list-detailed">
+                    <li>
+                        <h4>Auto Furos</h4>
+                        <p>Sistema de automação para inserção inteligente e em lote de furações padrão de montagem e usinagem (sujeito a limitações em recortes complexos).</p>
+                    </li>
+                    <li>
+                        <h4>Inserir Furações</h4>
+                        <p>Inserção manual e paramétrica de furos customizados de acordo com as configurações definidas na interface.</p>
+                    </li>
+                    <li>
+                        <h4>Recorte</h4>
+                        <p>Algoritmos de operações booleanas para detecção e execução de cortes especiais e complexos (ex: cantos em "L" e meia-esquadria/45 graus).</p>
+                    </li>
+                    <li>
+                        <h4>Subtração</h4>
+                        <p>Operação avançada de sólidos para criação rápida de rebaixos, encaixes e usinagens não padronizadas entre componentes do projeto.</p>
+                    </li>
+                    <li>
+                        <h4>Limpar Furos</h4>
+                        <p>Ferramenta rápida para remoção limpa de blocos e entidades de usinagens inseridas nas peças.</p>
+                    </li>
+                    <li class="bg-feature">
+                        <h4>Escaneamento Raio-X (Background)</h4>
+                        <p>Motor de leitura profunda que mapeia a geometria final das peças para extrair coordenadas exatas para as máquinas CNC.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="doc-module">
+                <h3>🏭 Fabricação, Exportação e Sistema</h3>
+                <ul class="feature-list-detailed">
+                    <li>
+                        <h4>Plano de Corte e Orçamento</h4>
+                        <p>Módulo duplo que integra o motor de Nesting nativo (distribuição otimizada de peças) com o motor automatizado de precificação (materiais e ferragens).</p>
+                    </li>
+                    <li>
+                        <h4>Gerar Peça Curva</h4>
+                        <p>Algoritmo específico para criação, cálculo, planificação ou tratamento de usinagem para componentes com raio e curvatura.</p>
+                    </li>
+                    <li>
+                        <h4>Exportação DXF (Integração CNC)</h4>
+                        <p>Geração automatizada de arquivos DXF parametrizados, prontos para a geração de G-code em softwares de usinagem, como o Vectric Aspire.</p>
+                    </li>
+                    <li>
+                        <h4>Exportação .PROG (Seccionadoras)</h4>
+                        <p>Integração industrial com a exportação direta de arquivos .prog, comunicando seu plano de corte nativamente com seccionadoras automatizadas.</p>
+                    </li>
+                    <li>
+                        <h4>Motor de Etiquetas e Códigos QR</h4>
+                        <p>Geração de etiquetas de produção no padrão PIMACO, incluindo a geração de <strong>Código QR individual para cada peça</strong> para rastreamento de fábrica.</p>
+                    </li>
+                    <li class="bg-feature">
+                        <h4>Relatórios e Integração de Dados</h4>
+                        <p>Exportação de listas de corte/ferragens em CSV (padrão Cortecloud) e acesso ao modelo 3D via Visualizador Mobile (QR Code do projeto geral).</p>
+                    </li>
+                    <li>
+                        <h4>Atualizar Plugin</h4>
+                        <p>Módulo de Auto-Update em background para verificação, download e instalação de versões recentes, desenhado para preservar as credenciais ativas do usuário.</p>
+                    </li>
+                    <li>
+                        <h4>Reset Geral</h4>
+                        <p>Restauração das definições de fábrica do plugin, limpando cache e resetando variáveis de ambiente do SketchUp ligadas ao ecossistema MOBPRO.</p>
+                    </li>
+                    <li class="bg-feature">
+                        <h4>Ativação Online</h4>
+                        <p>Infraestrutura em nuvem integrada para verificação contínua de licenças ativas, controle de usuários e combate à pirataria.</p>
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
     </main>
