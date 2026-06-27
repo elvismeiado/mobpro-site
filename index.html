@@ -7,28 +7,18 @@
     <title>MOBPRO Suite | A Automação CNC Offline para SketchUp</title>
     <style>
         :root {
-            /* Paleta Clean: Fundo claro, Azul e Verde pontuais */
+            /* Paleta Clean */
             --primary-blue: #1E3A8A;
-            /* Azul para Títulos e Destaques */
             --accent-green: #22C55E;
-            /* Verde Claro para Botões e Badges */
             --accent-green-hover: #16A34A;
             --bg-white: #FFFFFF;
-            /* Branco puro */
             --bg-light: #F8FAFC;
-            /* Cinza super claro para fundo de seções */
             --bg-gray: #F1F5F9;
-            /* Cinza médio/claro para contraste suave */
             --border-color: #E2E8F0;
-            /* Cinza para bordas sutis */
             --text-dark: #334155;
-            /* Cinza Chumbo para leitura principal */
             --text-gray: #64748B;
-            /* Cinza médio para subtítulos e descrições */
             --success: #22C55E;
-            /* Verde Claro (Checkmarks) */
             --danger: #EF4444;
-            /* Vermelho para alertas de juros */
         }
 
         * {
@@ -44,7 +34,6 @@
             line-height: 1.6;
         }
 
-        /* Hero Section (Fundo Claro Ajustado) */
         header {
             background-color: var(--bg-light);
             padding: 120px 20px 80px;
@@ -91,7 +80,6 @@
             transform: translateY(-2px);
         }
 
-        /* Seções Gerais */
         .section-container {
             padding: 80px 20px;
             max-width: 1200px;
@@ -116,7 +104,6 @@
             margin-right: auto;
         }
 
-        /* Dores Resolvidas (Pain Points) */
         .pain-points {
             background-color: var(--bg-white);
             border-radius: 12px;
@@ -152,11 +139,9 @@
             color: var(--text-gray);
         }
 
-        /* Playlist de Vídeos */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
-            /* 16:9 */
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -173,7 +158,6 @@
             border: 0;
         }
 
-        /* Grid de Features */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -223,7 +207,6 @@
             font-size: 1.2rem;
         }
 
-        /* Ecossistema de Plugins */
         .plugins-section {
             background-color: var(--bg-gray);
             border-top: 1px solid var(--border-color);
@@ -232,7 +215,7 @@
 
         .plugins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
         }
 
@@ -243,6 +226,9 @@
             border: 1px solid var(--border-color);
             border-left: 4px solid var(--primary-blue);
             transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .plugin-item:hover {
@@ -260,9 +246,32 @@
         .plugin-item p {
             font-size: 0.85rem;
             color: var(--text-gray);
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
-        /* FAQ */
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: color 0.2s;
+            margin-top: auto;
+        }
+
+        .video-link:hover {
+            color: var(--accent-green-hover);
+            text-decoration: underline;
+        }
+
+        .video-link::before {
+            content: "▶";
+            font-size: 0.7rem;
+            margin-right: 6px;
+        }
+
         .faq-item {
             background: var(--bg-white);
             margin-bottom: 15px;
@@ -284,7 +293,6 @@
             color: var(--text-dark);
         }
 
-        /* Pricing */
         .pricing-section {
             background-color: var(--bg-white);
         }
@@ -403,7 +411,6 @@
             font-weight: bold;
         }
 
-        /* Contato */
         .contact-section {
             text-align: center;
             background: var(--bg-gray);
@@ -587,45 +594,92 @@
             desempenho do seu SketchUp e automatizar tarefas repetitivas.</p>
         <div class="plugins-grid">
             <div class="plugin-item">
-                <h4>Menu & Seleção</h4>
-                <p>O coração do sistema. Gestão centralizada para acionar as principais ferramentas operacionais do
-                    MOBPRO.</p>
+                <div>
+                    <h4>Menu & Seleção</h4>
+                    <p>O coração do sistema. Gestão centralizada para acionar as principais ferramentas operacionais do
+                        MOBPRO.</p>
+                </div>
+                <a href="https://youtu.be/CNJe2v4JCqg?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7" target="_blank" class="video-link">Ver ferramenta em ação</a>
             </div>
             <div class="plugin-item">
-                <h4>Categorias & Nome Módulo</h4>
-                <p>Classifique os atributos em lote. Atribua fitas de borda complexas e insira furações agrupadas em
-                    segundos, além de identificar de forma lógica cada ambiente.</p>
+                <div>
+                    <h4>Categorias & Nome Módulo</h4>
+                    <p>Classifique os atributos em lote. Atribua fitas de borda complexas e insira furações agrupadas em
+                        segundos, além de identificar de forma lógica cada ambiente.</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <a href="https://www.youtube.com/watch?v=dMBzq8yBsXA&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=4&t=53s" target="_blank" class="video-link">Ver Categorias</a>
+                    <a href="https://www.youtube.com/watch?v=HEfHNVA6l1c&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=5" target="_blank" class="video-link">Ver Nome do Módulo</a>
+                </div>
             </div>
             <div class="plugin-item">
-                <h4>Materiais & Texturas</h4>
-                <p>Gestão avançada e normalizada de texturas das chapas. O plugin <strong>Limpar e Girar
-                        Textura</strong> controla a orientação do veio perfeitamente para o Nesting, preservando o
-                    mapeamento das bordas.</p>
+                <div>
+                    <h4>Materiais & Texturas</h4>
+                    <p>Gestão avançada e normalizada de texturas das chapas. O plugin <strong>Limpar e Girar
+                            Textura</strong> controla a orientação do veio perfeitamente para o Nesting, preservando o
+                        mapeamento das bordas.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=BEJ-tsEkWLY&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=6&t=96s" target="_blank" class="video-link">Ver ferramenta em ação</a>
             </div>
             <div class="plugin-item">
-                <h4>Limpeza Router</h4>
-                <p>Um utilitário vital para a automação CNC, focado na preparação e limpeza técnica da geometria para
-                    exportação de usinagem sem falhas.</p>
+                <div>
+                    <h4>Limpeza Router</h4>
+                    <p>Um utilitário vital para a automação CNC, focado na preparação e limpeza técnica da geometria para
+                        exportação de usinagem sem falhas.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=3y2FVAs8E-w&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=9" target="_blank" class="video-link">Ver ferramenta em ação</a>
             </div>
             <div class="plugin-item">
-                <h4>Relatórios e Integração</h4>
-                <p>Geração de locais de corte e ferragens em formato <strong>CSV editável (Padrão Cortecloud)</strong>,
-                    agilizando o envio de pedidos para centrais de serviço de corte de MDF.</p>
+                <div>
+                    <h4>Relatórios e Integração</h4>
+                    <p>Geração de locais de corte e ferragens em formato <strong>CSV editável (Padrão Cortecloud)</strong>,
+                        agilizando o envio de pedidos para centrais de serviço de corte de MDF.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=vyQPOne18n0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=17&t=30s" target="_blank" class="video-link">Ver exportação Cortecloud</a>
             </div>
             <div class="plugin-item">
-                <h4>Renomear Múltiplo</h4>
-                <p>Edite atributos brutais em massa. Altere o nome (DC Name) de dezenas de peças do seu projeto de forma
-                    simultânea.</p>
+                <div>
+                    <h4>Renomear Múltiplo</h4>
+                    <p>Edite atributos brutais em massa. Altere o nome (DC Name) de dezenas de peças do seu projeto de forma
+                        simultânea.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=dCKLNRaWDn4&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=2" target="_blank" class="video-link">Ver ferramenta em ação</a>
             </div>
             <div class="plugin-item">
-                <h4>Face Aninhada</h4>
-                <p>Ferramenta de seleção cirúrgica. Selecione diretamente as faces necessárias ignorando a complexidade
-                    e os níveis de grupos/componentes do 3D.</p>
+                <div>
+                    <h4>Plano de Montagem</h4>
+                    <p>Gere documentação estruturada com siglas explícitas para a montagem e deixe seus materiais prontos e
+                        parametrizados para os motores de renderização.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=RHXTEOP2ee0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=12&t=55s" target="_blank" class="video-link">Ver plano de montagem</a>
             </div>
             <div class="plugin-item">
-                <h4>Plano de Montagem</h4>
-                <p>Gere documentação estruturada com siglas explícitas para a montagem e deixe seus materiais prontos e
-                    parametrizados para os motores de renderização.</p>
+                <div>
+                    <h4>Plano de Corte Otimizado</h4>
+                    <p>Otimização de chapas inteligente e nativa para obter o maior rendimento construtivo offline direto na tela.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=FSe2jrWprFk&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=19&t=83s" target="_blank" class="video-link">Ver plano de corte</a>
+            </div>
+            <div class="plugin-item">
+                <div>
+                    <h4>Exportação de G-code Direto</h4>
+                    <p>Gere códigos de máquina de forma direta e sem intermediários, eliminando a real necessidade do software Aspire no processo.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=o7_VJZ70RFg&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=21&t=74s" target="_blank" class="video-link">Ver exportação direta</a>
+            </div>
+            <div class="plugin-item">
+                <div>
+                    <h4>Usinagem de Peças Curvas</h4>
+                    <p>Processamento automatizado de geometrias complexas e curvas direto para comandos G-code sem quebras na Router CNC.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=MMLYh0aeSpo&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=40" target="_blank" class="video-link">Ver usinagem curva</a>
+            </div>
+            <div class="plugin-item">
+                <div>
+                    <h4>Etiquetas Industriais QR Code</h4>
+                    <p>Geração automatizada de dados para impressão de etiquetas completas com códigos QR para rastreamento no chão de fábrica.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=5jgmBkeGJ2g&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=37" target="_blank" class="video-link">Ver sistema de etiquetas</a>
             </div>
         </div>
     </section>
@@ -701,7 +755,7 @@
 
                     <ul>
                         <li>2 Licenças de uso inclusas</li>
-                        <li>Biblioteca Dinâmica (>200 blocos paramétricos)</li>
+                        <li>Biblioteca Dinâmica (&gt;200 blocos paramétricos)</li>
                         <li>Plano de Corte Otimizado Nativo (Simplificado)</li>
                         <li><strong>Exportação de CSV Editável (Cortecloud)</strong></li>
                         <li>Geração de Orçamentos e Custos Automáticos</li>
@@ -756,10 +810,10 @@
                 Telegram para validar seu projeto, tirar dúvidas técnicas e garantir suas licenças comerciais.</p>
 
             <div class="social-links">
-                <a href="https://t.me/elvismeiado" target="_blank" class="btn-telegram">📲 Falar com Atendimento no
+                <a href="https://t.me/mobpro_suite" target="_blank" class="btn-telegram">📲 Falar com Atendimento no
                     Telegram</a>
-                <a href="https://www.instagram.com/oprojetistapp/" target="_blank" class="btn-instagram">📸 Conheça o
-                    @oprojetistapp</a>
+                <a href="https://www.instagram.com/mobpro_suite/" target="_blank" class="btn-instagram">📸 Conheça o
+                    @mobpro_suite</a>
             </div>
         </div>
     </section>
