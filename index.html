@@ -1,828 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOBPRO Suite | A Automação CNC Offline para SketchUp</title>
-    <style>
-        :root {
-            /* Paleta Clean */
-            --primary-blue: #1E3A8A;
-            --accent-green: #22C55E;
-            --accent-green-hover: #16A34A;
-            --bg-white: #FFFFFF;
-            --bg-light: #F8FAFC;
-            --bg-gray: #F1F5F9;
-            --border-color: #E2E8F0;
-            --text-dark: #334155;
-            --text-gray: #64748B;
-            --success: #22C55E;
-            --danger: #EF4444;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--bg-light);
-            padding: 120px 20px 80px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            max-width: 900px;
-            margin: 0 auto 20px;
-            line-height: 1.1;
-            color: var(--primary-blue);
-        }
-
-        header h1 span {
-            color: var(--accent-green);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 750px;
-            margin: 0 auto 40px;
-            color: var(--text-gray);
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background-color: var(--accent-green);
-            color: #fff;
-            padding: 18px 45px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-btn:hover {
-            background-color: var(--accent-green-hover);
-            transform: translateY(-2px);
-        }
-
-        .section-container {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-blue);
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.15rem;
-            color: var(--text-gray);
-            margin-bottom: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pain-points {
-            background-color: var(--bg-white);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-            padding: 50px;
-            margin-top: -40px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .pain-item {
-            padding: 20px;
-            border-left: 4px solid var(--primary-blue);
-            background: var(--bg-light);
-            border-radius: 0 8px 8px 0;
-        }
-
-        .pain-item h4 {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .pain-item p {
-            font-size: 0.95rem;
-            color: var(--text-gray);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--bg-white);
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            border-top: 4px solid var(--primary-blue);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-top-color: var(--accent-green);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        .card ul {
-            list-style: none;
-        }
-
-        .card ul li {
-            margin-bottom: 15px;
-            position: relative;
-            padding-left: 30px;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .card ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .plugins-section {
-            background-color: var(--bg-gray);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .plugins-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .plugin-item {
-            background: var(--bg-white);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary-blue);
-            transition: transform 0.3s, border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .plugin-item:hover {
-            transform: translateY(-3px);
-            border-left-color: var(--accent-green);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .plugin-item h4 {
-            color: var(--primary-blue);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .plugin-item p {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .video-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--accent-green);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: bold;
-            transition: color 0.2s;
-            margin-top: auto;
-        }
-
-        .video-link:hover {
-            color: var(--accent-green-hover);
-            text-decoration: underline;
-        }
-
-        .video-link::before {
-            content: "▶";
-            font-size: 0.7rem;
-            margin-right: 6px;
-        }
-
-        .faq-item {
-            background: var(--bg-white);
-            margin-bottom: 15px;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-green);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-        }
-
-        .faq-item h4 {
-            font-size: 1.2rem;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .faq-item p {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .pricing-section {
-            background-color: var(--bg-white);
-        }
-
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .price-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 50px 40px;
-            flex: 1;
-            min-width: 320px;
-            max-width: 450px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        .price-card.featured {
-            transform: scale(1.03);
-            border: 2px solid var(--accent-green);
-            box-shadow: 0 20px 50px rgba(34, 197, 94, 0.1);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-green);
-            color: #fff;
-            padding: 8px 25px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-
-        .price-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            color: var(--primary-blue);
-        }
-
-        .price {
-            font-size: 2.3rem;
-            font-weight: 900;
-            color: var(--primary-blue);
-            margin: 20px 0;
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .price span {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            font-weight: 600;
-            display: block;
-            margin-top: 5px;
-            text-transform: none;
-        }
-
-        .payment-info {
-            background: #F0FDF4;
-            color: #16A34A;
-            padding: 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-            border: 1px dashed var(--accent-green);
-        }
-
-        .setup-fee {
-            font-size: 1.1rem;
-            color: var(--primary-blue);
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .juros-info {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .price-card ul {
-            text-align: left;
-            margin-bottom: 40px;
-            list-style: none;
-        }
-
-        .price-card ul li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .price-card ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        .contact-section {
-            text-align: center;
-            background: var(--bg-gray);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .alert-box {
-            background-color: #EFF6FF;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            padding: 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .alert-box strong {
-            color: var(--primary-blue);
-            text-transform: uppercase;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .btn-telegram {
-            background-color: var(--primary-blue);
-            color: #fff;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        .btn-telegram:hover {
-            background-color: #1e40af;
-            transform: translateY(-2px);
-        }
-
-        .btn-instagram {
-            background: var(--bg-white);
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        .btn-instagram:hover {
-            background: var(--bg-light);
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background: var(--bg-white);
-            color: var(--text-gray);
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MOBPRO Suite — automação CNC offline nativa para SketchUp, do projeto à produção.">
+  <meta name="theme-color" content="#071426">
+  <title>MOBPRO Suite | Automação CNC para SketchUp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#071426;--ink-2:#0b1d35;--panel:#102846;--line:rgba(255,255,255,.11);--cream:#f5f7fa;--muted:#aebbd0;--lime:#4f9cff;--green:#dceaff;--orange:#8ab9ff;--radius:22px;--shadow:0 30px 80px rgba(0,19,48,.22)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--ink);color:var(--cream);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}
+    a{color:inherit}
+    button{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    .nav{position:fixed;z-index:20;top:16px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 28px));height:68px;border:1px solid var(--line);border-radius:18px;background:rgba(7,20,38,.8);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 22px;box-shadow:0 10px 50px rgba(0,0,0,.18)}
+    .brand{font:800 1.18rem "Manrope";letter-spacing:-.04em;text-decoration:none}.brand b{color:var(--lime)}.brand small{display:block;color:var(--muted);font:600 .58rem "DM Sans";letter-spacing:.19em}
+    .nav-links{display:flex;gap:27px}.nav-links a{text-decoration:none;color:#cad4e3;font-size:.85rem;font-weight:600;transition:.2s}.nav-links a:hover{color:var(--lime)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:12px;border:1px solid transparent;text-decoration:none;font-weight:700;transition:.25s;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--lime);color:#061427;box-shadow:0 10px 35px rgba(79,156,255,.18)}.btn-ghost{border-color:var(--line);background:rgba(255,255,255,.04)}
+    .arrow{font-size:1.15em}
+    .hero{min-height:920px;padding:180px 0 95px;position:relative;isolation:isolate}
+    .hero::after{content:"";position:absolute;z-index:-1;width:700px;height:700px;right:-260px;top:-180px;background:radial-gradient(circle,rgba(79,156,255,.22),transparent 66%);filter:blur(10px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--lime);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700}.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
+    h1,h2,h3{font-family:"Manrope",sans-serif;line-height:1.08;letter-spacing:-.05em}
+    h1{max-width:850px;font-size:clamp(3.2rem,7vw,6.7rem);margin:26px 0 27px}
+    h1 em{font-style:normal;color:var(--lime)}
+    .hero-copy{max-width:650px;color:#b9c4be;font-size:clamp(1.05rem,1.6vw,1.25rem)}
+    .hero-actions{display:flex;gap:12px;margin-top:38px;flex-wrap:wrap}
+    .hero-stage{margin-top:72px;display:grid;grid-template-columns:1.45fr .55fr;gap:14px}
+    .machine{min-height:300px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,#132b4a,#09182b);padding:32px}
+    .machine-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,156,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(79,156,255,.1) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to right,black,transparent)}
+    .cut-path{position:absolute;width:55%;height:58%;right:8%;top:18%;border:2px solid var(--lime);border-radius:48% 14% 40% 16%;transform:rotate(-7deg);box-shadow:0 0 25px rgba(79,156,255,.25)}
+    .cut-path::after{content:"ATC · G-CODE · NESTING";position:absolute;right:8%;bottom:-45px;color:var(--lime);font:700 .65rem "DM Sans";letter-spacing:.16em}
+    .machine-label{position:relative;z-index:2;max-width:270px}.machine-label span{display:block;color:var(--muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.13em}.machine-label strong{display:block;font:700 1.35rem "Manrope";margin-top:8px}
+    .stats{display:grid;grid-template-rows:1fr 1fr;gap:14px}.stat{border:1px solid var(--line);border-radius:var(--radius);padding:27px;background:rgba(255,255,255,.035);display:flex;flex-direction:column;justify-content:space-between}.stat b{font:800 3.2rem "Manrope";letter-spacing:-.07em;color:var(--lime)}.stat span{color:var(--muted);font-size:.84rem}
+    .strip{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;color:#8997aa;text-transform:uppercase;font-size:.7rem;font-weight:700;letter-spacing:.17em}.strip-track{display:flex;width:max-content;gap:45px;animation:marquee 26s linear infinite}.strip-track span::before{content:"✦";color:var(--lime);margin-right:45px}@keyframes marquee{to{transform:translateX(-50%)}}
+    section{padding:120px 0}.section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:end;margin-bottom:55px}.section-head h2{font-size:clamp(2.45rem,5vw,4.7rem)}.section-head p{color:var(--muted);max-width:540px;font-size:1.05rem}
+    .light{background:var(--cream);color:var(--ink)}.light .eyebrow{color:#2169c5}.light .section-head p{color:#5c6878}
+    .pain-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #d8dee8;border-radius:var(--radius);overflow:hidden}.pain{padding:34px 28px;min-height:280px;border-right:1px solid #d8dee8;transition:.3s}.pain:last-child{border:0}.pain:hover{background:#e8f1ff}.num{font:700 .75rem "Manrope";color:#6e7d91}.pain h3{font-size:1.3rem;margin:70px 0 15px;letter-spacing:-.035em}.pain p{font-size:.91rem;color:#586575}
+    .feature-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.feature{border:1px solid var(--line);border-radius:var(--radius);padding:34px;background:var(--ink-2);min-height:380px;position:relative;overflow:hidden}.feature:nth-child(1){grid-column:span 5}.feature:nth-child(2){grid-column:span 7}.feature:nth-child(3){grid-column:span 12;min-height:310px}.feature .icon{width:46px;height:46px;border:1px solid rgba(79,156,255,.4);border-radius:13px;color:var(--lime);display:grid;place-items:center;font-weight:800}.feature h3{font-size:1.65rem;margin:60px 0 22px}.feature ul{list-style:none;color:var(--muted);display:grid;gap:11px}.feature li{position:relative;padding-left:18px;font-size:.93rem}.feature li::before{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--lime);left:0;top:.65em}.feature strong{color:var(--cream)}.feature:nth-child(3) ul{grid-template-columns:1fr 1fr;gap:12px 42px}
+    .video-shell{border-radius:30px;padding:12px;background:linear-gradient(135deg,var(--lime),#204f8b 35%,#101e33 70%);box-shadow:var(--shadow)}.video-wrapper{aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000}.video-wrapper iframe{width:100%;height:100%;border:0}
+    .playlist-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.playlist-card h3{font-size:1.35rem;margin:22px 4px 6px}.playlist-card p{color:var(--muted);font-size:.9rem;margin:0 4px}.playlist-card .video-shell{border-radius:22px;padding:8px}.playlist-card .video-wrapper{border-radius:15px}
+    .coverage{background:#eef3f9;color:var(--ink)}.coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.coverage-card{background:#fff;border:1px solid #d8e0eb;border-radius:20px;padding:28px;min-height:220px}.coverage-card span{display:inline-flex;color:#2169c5;font-size:.68rem;font-weight:800;letter-spacing:.12em}.coverage-card h3{font-size:1.25rem;margin:42px 0 12px}.coverage-card p{font-size:.9rem;color:#5a6778}
+    .ecosystem{background:#dce8f6;color:var(--ink)}.eco-layout{display:grid;grid-template-columns:340px 1fr;gap:80px}.eco-intro{position:sticky;top:115px;align-self:start}.eco-intro h2{font-size:3.4rem;margin:20px 0}.eco-intro p{color:#536274}.eco-list{border-top:1px solid rgba(7,20,38,.2)}.plugin{display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;padding:27px 0;border-bottom:1px solid rgba(7,20,38,.2)}.plugin-index{color:#6a788b;font:700 .75rem "Manrope"}.plugin h3{font-size:1.15rem;letter-spacing:-.03em;margin-bottom:7px}.plugin p{color:#536274;font-size:.9rem;max-width:570px}.plugin a{text-decoration:none;font-size:.75rem;font-weight:700;border-bottom:1px solid;padding-bottom:3px;white-space:nowrap}
+    .pricing{position:relative}.pricing::before{content:"";position:absolute;width:450px;height:450px;background:rgba(79,156,255,.1);filter:blur(120px);left:-250px}.pricing-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:16px;align-items:stretch}.plan{border:1px solid var(--line);border-radius:26px;padding:38px;background:rgba(255,255,255,.025);display:flex;flex-direction:column}.plan.featured{background:var(--lime);color:var(--ink);transform:translateY(-14px);box-shadow:0 30px 100px rgba(79,156,255,.16)}.tag{align-self:flex-start;border:1px solid currentColor;border-radius:99px;padding:6px 10px;font-size:.64rem;font-weight:800;letter-spacing:.1em}.plan h3{font-size:2rem;margin:30px 0 12px}.plan>p{color:var(--muted);min-height:54px}.featured>p{color:#173b69}.price{font:800 2.3rem "Manrope";letter-spacing:-.05em;margin-top:32px}.price small{font:500 .73rem "DM Sans";display:block;letter-spacing:0;color:inherit;opacity:.65}.terms{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;padding:18px 0;border-bottom:1px solid var(--line)}.featured .terms{border-color:rgba(7,20,38,.18)}.plan ul{list-style:none;display:grid;gap:11px;margin:26px 0 34px;flex:1}.plan li{font-size:.89rem;padding-left:23px;position:relative}.plan li::before{content:"✓";position:absolute;left:0;font-weight:800;color:var(--lime)}.featured li::before{color:var(--ink)}.featured .btn{background:var(--ink);color:var(--cream)}
+    .faq{background:var(--cream);color:var(--ink)}.faq-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px}.faq h2{font-size:clamp(2.5rem,5vw,4.5rem);position:sticky;top:120px}.faq-item{border-top:1px solid #d2d9e3}.faq-item:last-child{border-bottom:1px solid #d2d9e3}.faq-q{width:100%;border:0;background:none;text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:20px;font-weight:700;color:var(--ink);cursor:pointer}.faq-q span:last-child{font-size:1.3rem;transition:.25s}.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}.faq-a>div{overflow:hidden;color:#586575;font-size:.93rem}.faq-a p{padding:0 40px 25px 0}.faq-item.open .faq-a{grid-template-rows:1fr}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+    .cta-section{padding:110px 0 45px}.cta-panel{background:var(--green);color:var(--ink);border-radius:30px;padding:65px;position:relative;overflow:hidden}.cta-panel::after{content:"M";position:absolute;right:-20px;bottom:-125px;font:800 23rem "Manrope";opacity:.08}.cta-panel h2{font-size:clamp(2.6rem,6vw,5.5rem);max-width:820px}.cta-panel p{margin:22px 0 32px;max-width:650px}.cta-actions{display:flex;gap:12px;flex-wrap:wrap}.cta-panel .btn-primary{background:var(--ink);color:var(--cream)}.cta-panel .btn-ghost{border-color:rgba(7,20,38,.3)}
+    .fraud{margin-top:20px;padding:16px 20px;border:1px solid rgba(7,20,38,.2);border-radius:12px;max-width:720px;font-size:.8rem}
+    footer{padding:35px 0 45px;color:#8090a4;font-size:.78rem}.footer-row{display:flex;justify-content:space-between;gap:25px;border-top:1px solid var(--line);padding-top:30px}
+    .reveal{opacity:0;transform:translateY(25px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:900px){.nav-links{display:none}.nav .btn{min-height:42px;padding:0 14px;font-size:.78rem}.hero{padding-top:145px;min-height:auto}.hero-stage,.section-head,.eco-layout,.faq-layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr;grid-template-rows:auto}.stat{min-height:145px}.pain-grid{grid-template-columns:1fr 1fr}.pain:nth-child(2){border-right:0}.pain:nth-child(-n+2){border-bottom:1px solid #d8dee8}.feature:nth-child(n){grid-column:span 12}.coverage-grid{grid-template-columns:1fr 1fr}.eco-intro,.faq h2{position:static}.pricing-grid{grid-template-columns:1fr}.plan.featured{transform:none}.eco-layout,.faq-layout{gap:45px}}
+    @media(max-width:600px){.wrap{width:min(100% - 24px,1180px)}.nav{top:8px}.brand small{display:none}h1{font-size:3.25rem}.hero{padding-bottom:70px}.hero-stage{margin-top:48px}.machine{min-height:270px;padding:24px}.stats,.playlist-grid{grid-template-columns:1fr}.section-head{gap:22px}.pain-grid,.coverage-grid{grid-template-columns:1fr}.pain{min-height:auto;border-right:0!important;border-bottom:1px solid #d8dee8!important}.pain h3{margin-top:35px}.feature{padding:27px}.feature:nth-child(3) ul{grid-template-columns:1fr}.plugin{grid-template-columns:38px 1fr}.plugin a{grid-column:2}.plan{padding:27px}.cta-panel{padding:38px 25px}.footer-row{flex-direction:column}.section-head h2,.eco-intro h2{font-size:2.65rem}section{padding:85px 0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.strip-track{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+  </style>
 </head>
-
 <body>
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="brand" href="#inicio">MOBPRO<b>.</b><small>INDUSTRIAL SUITE</small></a>
+    <div class="nav-links">
+      <a href="#recursos">Recursos</a><a href="#demonstracao">Demonstração</a><a href="#ecossistema">Ecossistema</a><a href="#planos">Planos</a>
+    </div>
+    <a class="btn btn-primary" href="#contato">Falar com especialista <span class="arrow">↗</span></a>
+  </nav>
 
-    <header>
-        <h1>Padronização Industrial, Menos Erros e <span>Máxima Lucratividade</span></h1>
-        <p>A automação CNC offline nativa para SketchUp. Elimine a dependência de planos de corte manuais, padronize
-            seus móveis com qualidade soberana e fature mais gastando menos material.</p>
-        <a href="#planos" class="cta-btn">Consultar Disponibilidade de Licenças</a>
+  <main>
+    <header class="hero" id="inicio">
+      <div class="wrap">
+        <span class="eyebrow">SketchUp → produção CNC</span>
+        <h1>Projete no SketchUp. <em>Produza sem limites.</em></h1>
+        <p class="hero-copy">Automação CNC offline para padronizar móveis, eliminar erros de processo e transformar cada projeto em produção industrial pronta para escalar.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#planos">Consultar licenças <span class="arrow">↗</span></a>
+          <a class="btn btn-ghost" href="#demonstracao">Ver em funcionamento <span>↓</span></a>
+        </div>
+        <div class="hero-stage reveal">
+          <div class="machine">
+            <div class="machine-grid"></div><div class="cut-path"></div>
+            <div class="machine-label"><span>Fluxo integrado</span><strong>Do modelo 3D ao chão de fábrica.</strong></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>200+</b><span>blocos paramétricos editáveis</span></div>
+            <div class="stat"><b>100%</b><span>processamento de engenharia offline</span></div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <div class="section-container" style="padding-top: 0;">
-        <div class="pain-points">
-            <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-blue);">Liberte Sua Loja do
-                Processo Manual e Escale Sua Produção</h2>
-            <div class="pain-grid">
-                <div class="pain-item">
-                    <h4>Fim da Dependência de Marceneiros</h4>
-                    <p>Sua loja não precisa mais parar ou depender de profissionais para criar planos de corte manuais.
-                        Com a <strong>padronização absoluta dos móveis</strong>, qualquer operador gera engenharia
-                        perfeita instantaneamente.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Economia Brutal de Material</h4>
-                    <p>Otimize o uso das chapas com um algoritmo avançado de Nesting que faz o <strong>aproveitamento
-                            automático de retalhos</strong>, reduzindo drasticamente o desperdício em cada projeto.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Erros Humanos Zerados</h4>
-                    <p>Mantenha sua fábrica blindada contra falhas de montagem com etiquetas automáticas <strong>PIMACO
-                            contendo QR Code exclusivo</strong>, garantindo rastreabilidade cirúrgica de cada
-                        componente.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Alta Qualidade Repetível</h4>
-                    <p>O sistema aplica <strong>sequenciamento lógico industrial obrigatório</strong> (furos > rasgos >
-                        corte), cálculo de abas (tabs) e rampa, gerando acabamento padrão de grande indústria.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="strip" aria-hidden="true"><div class="strip-track">
+      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Exportação DXF</span><span>Biblioteca dinâmica</span><span>SketchUp</span>
+      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Exportação DXF</span><span>Biblioteca dinâmica</span><span>SketchUp</span>
+    </div></div>
 
-    <section class="section-container" id="video">
-        <h2 class="section-title">O MOBPRO na Prática</h2>
-        <p class="section-subtitle">Assista à nossa playlist técnica de apresentação. Clique no ícone de lista no canto
-            superior direito do player para ver todos os módulos e o ecossistema completo.</p>
-        <div class="video-wrapper">
-            <iframe
-                src="https://www.youtube.com/embed/videoseries?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&showinfo=1&showsearch=1&rel=0"
-                title="Apresentação MOBPRO"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+    <section class="light">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Impacto operacional</span><h2>Menos improviso.<br>Mais produção.</h2></div>
+          <p>Padronização absoluta para sua operação crescer sem depender de processos manuais, reduzir desperdícios e repetir qualidade industrial em cada peça.</p>
         </div>
+        <div class="pain-grid reveal">
+          <article class="pain"><span class="num">01</span><h3>Fim da dependência manual</h3><p>Qualquer operador gera engenharia precisa a partir de um processo padronizado, sem interromper a loja.</p></article>
+          <article class="pain"><span class="num">02</span><h3>Economia de material</h3><p>Nesting avançado e aproveitamento automático de retalhos reduzem drasticamente o desperdício por projeto.</p></article>
+          <article class="pain"><span class="num">03</span><h3>Erros humanos reduzidos</h3><p>Etiquetas PIMACO com QR Code garantem rastreabilidade de cada componente no chão de fábrica.</p></article>
+          <article class="pain"><span class="num">04</span><h3>Qualidade repetível</h3><p>Sequenciamento lógico de furos, rasgos e corte, com abas e rampas para acabamento industrial.</p></article>
+        </div>
+      </div>
     </section>
 
-    <section class="section-container" id="features">
-        <h2 class="section-title">O Motor CAM Mais Inteligente do Mercado</h2>
-        <p class="section-subtitle">Construído para quem exige alta qualidade técnica, velocidade de projeto e
-            fidelidade absoluta na usinagem.</p>
-        <div class="grid">
-            <div class="card">
-                <h3>Fabricação CNC Impecável</h3>
-                <ul>
-                    <li>Geração de <strong>G-code nativo</strong> com suporte a Troca Automática (ATC) para até 16
-                        ferramentas e controle exato de Spindle.</li>
-                    <li><strong>Estratégia de Cava:</strong> Recurso exclusivo para esvaziamento total na fresa de corte
-                        e passada final perfeita na fresa de cava.</li>
-                    <li>Usinagem inteligente em curvas: O sistema executa o corte externo primeiro e os rasgos internos
-                        depois, evitando quebras na router.</li>
-                    <li>Exportação limpa e parametrizada via <strong>DXF</strong> e compatibilidade direta com arquivos
-                        <strong>.Gcode</strong>.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Nesting e Alto Rendimento</h3>
-                <ul>
-                    <li>Lógica industrial avançada para o <strong>descarte automático de sucata</strong> e uso
-                        inteligente de sobras.</li>
-                    <li>União de <strong>múltiplos projetos</strong> em um único plano de corte, separados na produção
-                        de forma inteligente por siglas de módulo/cliente.</li>
-                    <li>Integração total: exporte o seu plano em <strong>CSV editável</strong> para enviar direto a
-                        centrais de corte via Cortecloud para pedidos de MDF cortado.</li>
-                    <li>Sistemas de <strong>Tabs (abas)</strong> em peças pequenas para segurança máxima na mesa a vácuo
-                        da CNC.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Edição e Parametrização em 3D</h3>
-                <ul>
-                    <li>Biblioteca robusta com <strong>mais de 200 blocos paramétricos</strong> editáveis nativamente.
-                    </li>
-                    <li><strong>Edição Unitária Visual:</strong> Adicione, remova ou altere furos e usinagens em tempo
-                        real, com o sistema bloqueando automaticamente conflitos de ferramentas.</li>
-                    <li>Furação frontal e traseira integradas, mapeadas por tecnologia de escaneamento em Raio-X da
-                        geometria.</li>
-                    <li>Controle absoluto do sentido do veio da madeira e usinagens totalmente independentes.</li>
-                </ul>
-            </div>
+    <section id="recursos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Motor CAM inteligente</span><h2>Precisão que sai da tela.</h2></div>
+          <p>Velocidade de projeto e fidelidade absoluta na usinagem, reunidas em um fluxo nativo dentro do SketchUp.</p>
         </div>
+        <div class="feature-grid">
+          <article class="feature reveal"><div class="icon">01</div><h3>Fabricação CNC impecável</h3><ul>
+            <li><strong>G-code nativo</strong> com ATC para até 16 ferramentas e controle de Spindle.</li><li>Estratégia de cava com esvaziamento e passada final precisa.</li><li>Usinagem inteligente de curvas para evitar quebras na router.</li><li>Exportação parametrizada via <strong>DXF e .Gcode</strong>.</li>
+          </ul></article>
+          <article class="feature reveal"><div class="icon">02</div><h3>Nesting e alto rendimento</h3><ul>
+            <li>Descarte automático de sucata e uso inteligente de sobras.</li><li>União de <strong>múltiplos projetos</strong> em um único plano de corte.</li><li><strong>CSV editável</strong> compatível com Cortecloud.</li><li>Tabs em peças pequenas para segurança na mesa a vácuo.</li>
+          </ul></article>
+          <article class="feature reveal"><div class="icon">03</div><h3>Edição e parametrização em 3D</h3><ul>
+            <li>Mais de <strong>200 blocos paramétricos</strong> editáveis.</li><li>Edição visual unitária de furos e usinagens.</li><li>Bloqueio automático de conflitos entre ferramentas.</li><li>Furação frontal e traseira com leitura da geometria.</li><li>Controle do sentido do veio da madeira.</li><li>Usinagens independentes e não destrutivas.</li>
+          </ul></article>
+        </div>
+      </div>
     </section>
 
-    <section class="section-container plugins-section" id="ecossistema">
-        <h2 class="section-title">Muito Além de uma Biblioteca: O Ecossistema MOBPRO</h2>
-        <p class="section-subtitle">Você recebe um kit completo de plugins auxiliares desenvolvidos para turbinar o
-            desempenho do seu SketchUp e automatizar tarefas repetitivas.</p>
-        <div class="plugins-grid">
-            <div class="plugin-item">
-                <div>
-                    <h4>Menu & Seleção</h4>
-                    <p>O coração do sistema. Gestão centralizada para acionar as principais ferramentas operacionais do
-                        MOBPRO.</p>
-                </div>
-                <a href="https://youtu.be/CNJe2v4JCqg?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7" target="_blank" class="video-link">Ver ferramenta em ação</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Categorias & Nome Módulo</h4>
-                    <p>Classifique os atributos em lote. Atribua fitas de borda complexas e insira furações agrupadas em
-                        segundos, além de identificar de forma lógica cada ambiente.</p>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <a href="https://www.youtube.com/watch?v=dMBzq8yBsXA&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=4&t=53s" target="_blank" class="video-link">Ver Categorias</a>
-                    <a href="https://www.youtube.com/watch?v=HEfHNVA6l1c&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=5" target="_blank" class="video-link">Ver Nome do Módulo</a>
-                </div>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Materiais & Texturas</h4>
-                    <p>Gestão avançada e normalizada de texturas das chapas. O plugin <strong>Limpar e Girar
-                            Textura</strong> controla a orientação do veio perfeitamente para o Nesting, preservando o
-                        mapeamento das bordas.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=BEJ-tsEkWLY&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=6&t=96s" target="_blank" class="video-link">Ver ferramenta em ação</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Limpeza Router</h4>
-                    <p>Um utilitário vital para a automação CNC, focado na preparação e limpeza técnica da geometria para
-                        exportação de usinagem sem falhas.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=3y2FVAs8E-w&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=9" target="_blank" class="video-link">Ver ferramenta em ação</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Relatórios e Integração</h4>
-                    <p>Geração de locais de corte e ferragens em formato <strong>CSV editável (Padrão Cortecloud)</strong>,
-                        agilizando o envio de pedidos para centrais de serviço de corte de MDF.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=vyQPOne18n0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=17&t=30s" target="_blank" class="video-link">Ver exportação Cortecloud</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Renomear Múltiplo</h4>
-                    <p>Edite atributos brutais em massa. Altere o nome (DC Name) de dezenas de peças do seu projeto de forma
-                        simultânea.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=dCKLNRaWDn4&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=2" target="_blank" class="video-link">Ver ferramenta em ação</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Plano de Montagem</h4>
-                    <p>Gere documentação estruturada com siglas explícitas para a montagem e deixe seus materiais prontos e
-                        parametrizados para os motores de renderização.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=RHXTEOP2ee0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=12&t=55s" target="_blank" class="video-link">Ver plano de montagem</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Plano de Corte Otimizado</h4>
-                    <p>Otimização de chapas inteligente e nativa para obter o maior rendimento construtivo offline direto na tela.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=FSe2jrWprFk&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=19&t=83s" target="_blank" class="video-link">Ver plano de corte</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Exportação de G-code Direto</h4>
-                    <p>Gere códigos de máquina de forma direta e sem intermediários, eliminando a real necessidade do software Aspire no processo.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=o7_VJZ70RFg&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=21&t=74s" target="_blank" class="video-link">Ver exportação direta</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Usinagem de Peças Curvas</h4>
-                    <p>Processamento automatizado de geometrias complexas e curvas direto para comandos G-code sem quebras na Router CNC.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=MMLYh0aeSpo&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=40" target="_blank" class="video-link">Ver usinagem curva</a>
-            </div>
-            <div class="plugin-item">
-                <div>
-                    <h4>Etiquetas Industriais QR Code</h4>
-                    <p>Geração automatizada de dados para impressão de etiquetas completas com códigos QR para rastreamento no chão de fábrica.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=5jgmBkeGJ2g&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=37" target="_blank" class="video-link">Ver sistema de etiquetas</a>
-            </div>
+    <section class="coverage">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Fluxo documentado</span><h2>Da criação ao arquivo de máquina.</h2></div>
+          <p>Os tutoriais mostram uma operação conectada: modelagem, preparação técnica, custos, documentação, Nesting e fabricação CNC dentro do mesmo ecossistema.</p>
         </div>
+        <div class="coverage-grid">
+          <article class="coverage-card reveal"><span>01 · CONSTRUTOR</span><h3>Construção guiada de móveis</h3><p>Criação de módulos, soluções em canto L, conjugados e aplicações práticas como porta-condimentos.</p></article>
+          <article class="coverage-card reveal"><span>02 · PREPARAÇÃO</span><h3>Blocos, faces e componentes</h3><p>Inserção com mira, faces aninhadas, troca de componentes, nomes, categorias e materiais organizados.</p></article>
+          <article class="coverage-card reveal"><span>03 · ENGENHARIA</span><h3>Recortes e usinagens</h3><p>Rasgos, rebaixos, fundos, peças curvas e furações frontais ou traseiras com inspeção visual.</p></article>
+          <article class="coverage-card reveal"><span>04 · GESTÃO</span><h3>Orçamentos e centro de custos</h3><p>Quantidades de peças, cortes e informações de projeto reunidas para apoiar a formação de custos.</p></article>
+          <article class="coverage-card reveal"><span>05 · PRODUÇÃO</span><h3>Nesting, sobras e etiquetas</h3><p>Planos otimizados, uso automático de retalhos e etiquetas configuráveis com visualização por QR Code.</p></article>
+          <article class="coverage-card reveal"><span>06 · INTEGRAÇÃO</span><h3>Cortecloud e máquina CNC</h3><p>Exportação de projetos com usinagem, CSV, DXF, G-code e PROG para diferentes fluxos de fabricação.</p></article>
+        </div>
+      </div>
     </section>
 
-    <section class="section-container" id="faq">
-        <h2 class="section-title">Dúvidas Frequentes</h2>
-
-        <div class="faq-item">
-            <h4>1. O plugin MOBPRO precisa de internet constante para funcionar?</h4>
-            <p><strong>Não!</strong> Uma das nossas maiores vantagens é a velocidade. Todo o processamento de
-                engenharia, edição 3D e cálculo de plano de corte ocorre de forma <strong>100% offline</strong> no
-                hardware da sua máquina. A internet só é necessária por alguns segundos durante a inicialização do
-                SketchUp para a validação de segurança da licença.</p>
+    <section id="demonstracao">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">55 vídeos técnicos</span><h2>Aprenda vendo acontecer.</h2></div>
+          <p>Duas trilhas organizadas: uma apresenta o ecossistema completo da Suíte e a outra aprofunda o fluxo do MOBPRO Construtor.</p>
         </div>
-
-        <div class="faq-item">
-            <h4>2. Como funciona o suporte técnico?</h4>
-            <p>Esqueça os robôs e os tickets demorados. Nosso suporte é humano, prático e realizado de forma <strong>1 a
-                    1</strong> diretamente com nossos especialistas via Telegram. Atendemos 1 usuário titular por
-                plano/adesão para garantir que você receba soluções rápidas e eficientes para o seu chão de fábrica.</p>
+        <div class="playlist-grid">
+          <article class="playlist-card reveal">
+            <div class="video-shell"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/videoseries?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&rel=0" title="Playlist Plugin MOBPRO para Marcenaria no SketchUp" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div></div>
+            <h3>Ecossistema MOBPRO Suíte</h3><p>48 vídeos sobre projeto, orçamento, documentação, Nesting, etiquetas, usinagem e exportação.</p>
+          </article>
+          <article class="playlist-card reveal">
+            <div class="video-shell"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/videoseries?list=PLVb-zlI_XlK4&rel=0" title="Playlist de tutoriais MOBPRO Construtor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div></div>
+            <h3>MOBPRO Construtor</h3><p>7 tutoriais para acompanhar a criação de módulos e aplicações práticas do início ao fim.</p>
+          </article>
         </div>
-
-        <div class="faq-item">
-            <h4>3. O que acontece se houver atraso no pagamento da mensalidade?</h4>
-            <p>Como o sistema realiza a checagem eletrônica da licença, em caso de não identificação do pagamento da
-                renovação mensal, o acesso aos plugins exclusivos de processamento e furação é temporariamente
-                desativado. <strong>Assim que o acerto financeiro for realizado, seu acesso é reativado
-                    imediatamente(com pagamento dos valores de mensalidades pendentes anteriores), sem qualquer cobrança
-                    de nova taxa de adesão ou penalidades ocultas</strong> (e os projetos já salvos permanecem
-                protegidos na sua máquina).</p>
-        </div>
-
-        <div class="faq-item">
-            <h4>4. Como funciona a Taxa de Adesão e o Licenciamento?</h4>
-            <p>A taxa de adesão cobre o seu setup inicial, mapeamento técnico e o direito de uso da nossa biblioteca
-                base parametrizada enquanto a licença estiver ativa. O licenciamento é atrelado ao computador de forma
-                segura. Em caso de interrupção prolongada superior a 6 meses sem renovações, o plano vigente é cancelado
-                para liberação da licença em nosso servidor de dados.</p>
-        </div>
-
-        <div class="faq-item">
-            <h4>5. Posso ter uma biblioteca personalizada pro meu método construtivo?</h4>
-            <p>A biblioteca é unificada para todos os usuários e detém os principais métodos industriais do mercado. Não
-                realizamos personalizações individuais customizadas sem custos extras de desenvolvimento, realizando a
-                análise prévia da viabilidade de engenharia.</p>
-        </div>
-
-        <div class="faq-item">
-            <h4>6. As usinagens são paramétricas e se ajustam aos blocos?</h4>
-            <p>Não, nós prezamos pelo controle técnico total do usuário. Entendemos que por se tratar da etapa final de
-                furação e corte, aplicar as usinagens de forma manual e individual com os plugins em um projeto já
-                definido garante o rigor milimétrico, eliminando qualquer risco de erro técnico antes do envio do
-                arquivo final para a máquina CNC.</p>
-        </div>
+      </div>
     </section>
 
-    <section class="pricing-section" id="planos">
-        <div class="section-container">
-            <h2 class="section-title">Escolha o Motor da Sua Produção</h2>
-            <p class="section-subtitle">Condições comerciais sob consulta. Garanta máxima eficiência com o melhor
-                custo-benefício industrial.</p>
-            <div class="pricing-grid">
-
-                <div class="price-card">
-                    <h3>MOBPRO Suite Basic</h3>
-                    <p>A solução essencial para lojas, marcenarias modernas, arquitetos e projetistas independentes.</p>
-                    <div class="price">Sob Consulta<span>Disponibilidade via Atendimento</span></div>
-                    <div class="payment-info">CONDIÇÕES FACILITADAS VIA PIX OU CARTÃO</div>
-
-                    <div class="setup-fee">Adesão Comercial Flexível</div>
-                    <div class="juros-info">*Consulte nossa equipe para pacotes de licenciamento corporativo ou expansão
-                        de estações de trabalho.</div>
-
-                    <ul>
-                        <li>2 Licenças de uso inclusas</li>
-                        <li>Biblioteca Dinâmica (&gt;200 blocos paramétricos)</li>
-                        <li>Plano de Corte Otimizado Nativo (Simplificado)</li>
-                        <li><strong>Exportação de CSV Editável (Cortecloud)</strong></li>
-                        <li>Geração de Orçamentos e Custos Automáticos</li>
-                        <li>Emissão de Etiquetas PIMACO com QR Code</li>
-                        <li>Acesso ao Ecossistema de Plugins Auxiliares</li>
-                        <li>Gatilhamento de Alta Conversão no Suporte</li>
-                    </ul>
-                    <a href="https://t.me/elvismeiado" target="_blank" class="cta-btn"
-                        style="display:block; width:100%;">Solicitar Orçamento Basic</a>
-                </div>
-
-                <div class="price-card featured">
-                    <div class="badge">AUTOMAÇÃO CNC TOTAL</div>
-                    <h3>MOBPRO Furações CNC</h3>
-                    <p>O plano definitivo para indústrias e lojas que operam com Router CNC e buscam independência
-                        total.</p>
-                    <div class="price">Sob Consulta<span>Condições Exclusivas sob Demanda</span></div>
-                    <div class="payment-info">MENSALIDADE E SETUP SOB MEDIDA PARA O SEU NEGÓCIO</div>
-
-                    <div class="setup-fee">Adesão Industrial Parametrizada</div>
-                    <div class="juros-info">*Consulte condições de parcelamento do setup direto com a nossa engenharia
-                        de software via Telegram.</div>
-
-                    <ul>
-                        <li>3 Licenças de uso inclusas</li>
-                        <li><strong>Todos os recursos do pacote Suite Basic</strong></li>
-                        <li><strong>Edição de Usinagem Visual em 3D</strong> (Não-destrutiva)</li>
-                        <li>Motor CNC Nativo (G-Code com Troca Automática)</li>
-                        <li>Nesting Avançado com Gestão de Retalhos</li>
-                        <li>Exportação direta DXF para Aspire / Geração de Gcode</li>
-                        <li>Plugin Limpeza Router CNC incluso</li>
-                        <li>Suporte Prioritário de Chão de Fábrica</li>
-                    </ul>
-                    <a href="https://t.me/mobpro_suite" target="_blank" class="cta-btn"
-                        style="display:block; width:100%;">Solicitar Licença CNC Full</a>
-                </div>
-
-            </div>
+    <section class="ecosystem" id="ecossistema">
+      <div class="wrap eco-layout">
+        <div class="eco-intro reveal"><span class="eyebrow">Ecossistema completo</span><h2>Muito além de uma biblioteca.</h2><p>Plugins auxiliares que aceleram o SketchUp e automatizam tarefas repetitivas.</p></div>
+        <div class="eco-list reveal">
+          <article class="plugin"><span class="plugin-index">01</span><div><h3>Menu & Seleção</h3><p>Gestão centralizada para acionar as principais ferramentas operacionais.</p></div><a href="https://youtu.be/CNJe2v4JCqg?list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7" target="_blank" rel="noopener">Ver em ação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">02</span><div><h3>Categorias & Nome Módulo</h3><p>Atributos em lote, fitas de borda, furações agrupadas e identificação lógica de ambientes.</p></div><a href="https://www.youtube.com/watch?v=dMBzq8yBsXA&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=4&t=53s" target="_blank" rel="noopener">Ver categorias ↗</a></article>
+          <article class="plugin"><span class="plugin-index">03</span><div><h3>Materiais & Texturas</h3><p>Controle da orientação do veio para o Nesting, preservando o mapeamento das bordas.</p></div><a href="https://www.youtube.com/watch?v=BEJ-tsEkWLY&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=6&t=96s" target="_blank" rel="noopener">Ver em ação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">04</span><div><h3>Limpeza Router</h3><p>Preparação e limpeza técnica da geometria para exportar usinagens sem falhas.</p></div><a href="https://www.youtube.com/watch?v=3y2FVAs8E-w&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=9" target="_blank" rel="noopener">Ver em ação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">05</span><div><h3>Relatórios e Integração</h3><p>Locais de corte e ferragens em CSV editável, no padrão Cortecloud.</p></div><a href="https://www.youtube.com/watch?v=vyQPOne18n0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=17&t=30s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">06</span><div><h3>Renomear Múltiplo</h3><p>Altere nomes e atributos de dezenas de peças simultaneamente.</p></div><a href="https://www.youtube.com/watch?v=dCKLNRaWDn4&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=2" target="_blank" rel="noopener">Ver em ação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">07</span><div><h3>Plano de Montagem</h3><p>Documentação estruturada e materiais prontos para motores de renderização.</p></div><a href="https://www.youtube.com/watch?v=RHXTEOP2ee0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=12&t=55s" target="_blank" rel="noopener">Ver plano ↗</a></article>
+          <article class="plugin"><span class="plugin-index">08</span><div><h3>Plano de Corte Otimizado</h3><p>Otimização inteligente e offline para o maior rendimento construtivo.</p></div><a href="https://www.youtube.com/watch?v=FSe2jrWprFk&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=19&t=83s" target="_blank" rel="noopener">Ver plano ↗</a></article>
+          <article class="plugin"><span class="plugin-index">09</span><div><h3>Exportação de G-code</h3><p>Código de máquina direto, eliminando a necessidade do Aspire.</p></div><a href="https://www.youtube.com/watch?v=o7_VJZ70RFg&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=21&t=74s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">10</span><div><h3>Usinagem de Peças Curvas</h3><p>Geometrias complexas e curvas transformadas em G-code sem quebras.</p></div><a href="https://www.youtube.com/watch?v=MMLYh0aeSpo&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=40" target="_blank" rel="noopener">Ver usinagem ↗</a></article>
+          <article class="plugin"><span class="plugin-index">11</span><div><h3>Etiquetas Industriais QR Code</h3><p>Dados completos para impressão e rastreamento no chão de fábrica.</p></div><a href="https://www.youtube.com/watch?v=5jgmBkeGJ2g&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=37" target="_blank" rel="noopener">Ver etiquetas ↗</a></article>
         </div>
+      </div>
     </section>
 
-    <section class="contact-section" id="contato">
-        <div class="section-container">
-            <div class="alert-box">
-                ⚠️ <strong>Atenção contra Fraudes!</strong><br>
-                A MOBPRO realiza todas as vendas, suporte e atendimento comercial <strong>exclusivamente através do
-                    Telegram oficial</strong>. Nós NÃO possuímos atendimento de vendas via WhatsApp!
-            </div>
-
-            <h2 class="section-title">Pronto para a Indústria 4.0?</h2>
-            <p class="section-subtitle" style="margin-bottom:20px;">Fale diretamente com a nossa equipe de engenharia no
-                Telegram para validar seu projeto, tirar dúvidas técnicas e garantir suas licenças comerciais.</p>
-
-            <div class="social-links">
-                <a href="https://t.me/mobpro_suite" target="_blank" class="btn-telegram">📲 Falar com Atendimento no
-                    Telegram</a>
-                <a href="https://www.instagram.com/mobpro_suite/" target="_blank" class="btn-instagram">📸 Conheça o
-                    @mobpro_suite</a>
-            </div>
+    <section class="pricing" id="planos">
+      <div class="wrap">
+        <div class="section-head reveal"><div><span class="eyebrow">Licenciamento</span><h2>Escolha o motor da sua produção.</h2></div><p>Condições comerciais sob consulta, com pacotes pensados para diferentes níveis de operação.</p></div>
+        <div class="pricing-grid">
+          <article class="plan reveal"><span class="tag">PARA PROJETAR E ORGANIZAR</span><h3>MOBPRO Suite Basic</h3><p>Para lojas, marcenarias modernas, arquitetos e projetistas independentes.</p><div class="price">Sob consulta<small>Disponibilidade via atendimento</small></div><div class="terms">2 licenças · PIX ou cartão · adesão flexível</div><ul>
+            <li>Biblioteca dinâmica com mais de 200 blocos</li><li>Plano de corte otimizado nativo</li><li>CSV editável para Cortecloud</li><li>Orçamentos e custos automáticos</li><li>Etiquetas PIMACO com QR Code</li><li>Ecossistema de plugins auxiliares</li>
+          </ul><a class="btn btn-ghost" href="https://t.me/elvismeiado" target="_blank" rel="noopener">Solicitar orçamento Basic ↗</a></article>
+          <article class="plan featured reveal"><span class="tag">AUTOMAÇÃO CNC TOTAL</span><h3>MOBPRO Furações CNC</h3><p>Para indústrias e lojas com Router CNC que buscam independência total.</p><div class="price">Sob consulta<small>Condições exclusivas sob demanda</small></div><div class="terms">3 licenças · setup sob medida · suporte prioritário</div><ul>
+            <li>Todos os recursos do Suite Basic</li><li>Edição visual de usinagem em 3D</li><li>Motor CNC nativo com troca automática</li><li>Nesting avançado e gestão de retalhos</li><li>DXF para Aspire e geração de G-code</li><li>Plugin Limpeza Router CNC</li><li>Suporte de chão de fábrica</li>
+          </ul><a class="btn" href="https://t.me/mobpro_suite" target="_blank" rel="noopener">Solicitar licença CNC Full ↗</a></article>
         </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 MOBPRO Suite. A tecnologia definitiva que une modelagem ágil à precisão industrial no SketchUp.
-            Todos os direitos reservados.</p>
-    </footer>
+    <section class="faq" id="faq">
+      <div class="wrap faq-layout">
+        <div><span class="eyebrow">FAQ técnico</span><h2>Dúvidas frequentes.</h2></div>
+        <div>
+          <article class="faq-item open"><button class="faq-q" aria-expanded="true"><span>O MOBPRO precisa de internet constante?</span><span>+</span></button><div class="faq-a"><div><p>Não. Engenharia, edição 3D e plano de corte funcionam 100% offline. A internet é necessária apenas por alguns segundos na inicialização do SketchUp para validar a licença.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Como funciona o suporte técnico?</span><span>+</span></button><div class="faq-a"><div><p>O suporte é humano, prático e individual, diretamente com especialistas via Telegram. Cada plano atende um usuário titular.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>O que acontece em caso de atraso?</span><span>+</span></button><div class="faq-a"><div><p>Os plugins exclusivos de processamento e furação são temporariamente desativados. Após o acerto das mensalidades pendentes, o acesso é reativado sem nova taxa de adesão; seus projetos permanecem protegidos na máquina.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Como funcionam adesão e licenciamento?</span><span>+</span></button><div class="faq-a"><div><p>A adesão cobre setup inicial, mapeamento técnico e uso da biblioteca enquanto a licença estiver ativa. O licenciamento é vinculado ao computador. Após interrupção superior a seis meses, o plano pode ser cancelado para liberação da licença.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Posso ter uma biblioteca personalizada?</span><span>+</span></button><div class="faq-a"><div><p>A biblioteca é unificada e contempla os principais métodos industriais. Customizações individuais dependem de análise de engenharia e custos extras de desenvolvimento.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>As usinagens são paramétricas?</span><span>+</span></button><div class="faq-a"><div><p>As usinagens são aplicadas manual e individualmente em um projeto já definido, preservando o controle técnico e o rigor milimétrico antes do envio à CNC.</p></div></div></article>
+        </div>
+      </div>
+    </section>
 
+    <section class="cta-section" id="contato">
+      <div class="wrap">
+        <div class="cta-panel reveal"><span class="eyebrow">Próximo passo</span><h2>Leve sua produção para outro nível.</h2><p>Converse com a equipe de engenharia, valide seu projeto e encontre a licença ideal para a sua operação.</p><div class="cta-actions"><a class="btn btn-primary" href="https://t.me/mobpro_suite" target="_blank" rel="noopener">Falar no Telegram ↗</a><a class="btn btn-ghost" href="https://www.instagram.com/mobpro_suite/" target="_blank" rel="noopener">Conhecer @mobpro_suite ↗</a></div><div class="fraud"><strong>Atenção contra fraudes:</strong> vendas e suporte acontecem exclusivamente pelo Telegram oficial. A MOBPRO não realiza atendimento comercial via WhatsApp.</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-row"><span>© 2026 MOBPRO Suite. Todos os direitos reservados.</span><span>Modelagem ágil. Precisão industrial.</span></div></footer>
+  <script>
+    try {
+      const reveal = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); reveal.unobserve(entry.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((element) => reveal.observe(element));
+      document.querySelectorAll(".faq-q").forEach((button) => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".faq-item");
+          const isOpen = item.classList.toggle("open");
+          button.setAttribute("aria-expanded", String(isOpen));
+        });
+      });
+    } catch (error) {
+      console.error("Falha ao iniciar interações da página.", error);
+    }
+  </script>
 </body>
-
 </html>
