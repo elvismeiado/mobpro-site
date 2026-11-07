@@ -515,10 +515,13 @@
           });
         };
 
+        // Remove o prefixo "MOBPRO Suíte -" repetido nos títulos do YouTube.
+        const cleanTitle = (title) => String(title || "").replace(/^\s*MOBPRO\s+Su[ií]te\s*[-–—:]\s*/i, "").replace(/\s+/g, " ").trim() || String(title || "");
+
         const applyCatalog = (catalog) => {
           Object.keys(PLAYLIST_IDS).forEach((key) => {
             if (!Array.isArray(catalog[key]) || !catalog[key].length) return;
-            videoCatalog[key] = catalog[key];
+            videoCatalog[key] = catalog[key].map(([id, title, duration]) => [id, cleanTitle(title), duration]);
             if (videoRenderers[key]) videoRenderers[key]();
           });
           updateCounts();
