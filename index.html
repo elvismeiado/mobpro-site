@@ -24,13 +24,14 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:12px;border:1px solid transparent;text-decoration:none;font-weight:700;transition:.25s;cursor:pointer}
     .btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--lime);color:#061427;box-shadow:0 10px 35px rgba(79,156,255,.18)}.btn-ghost{border-color:var(--line);background:rgba(255,255,255,.04)}
     .arrow{font-size:1.15em}
-    .hero{min-height:auto;padding:180px 0 95px;position:relative;isolation:isolate}
-    .hero::after{content:"";position:absolute;z-index:-1;width:700px;height:700px;right:-260px;top:-180px;background:radial-gradient(circle,rgba(79,156,255,.22),transparent 66%);filter:blur(10px)}
+    .hero{min-height:auto;padding:180px 0 95px;position:relative;isolation:isolate;overflow:hidden}
+    .hero::after{content:"";position:absolute;z-index:-1;width:700px;height:700px;right:-260px;top:-180px;background:radial-gradient(circle,rgba(79,156,255,.12),transparent 66%);filter:blur(10px)}
+    .hero::before{content:"";position:absolute;z-index:-1;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);mask-image:linear-gradient(180deg,#000 0%,transparent 85%)}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--lime);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700}.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
     h1,h2,h3{font-family:"Manrope",sans-serif;line-height:1.08;letter-spacing:-.05em}
     h1{max-width:850px;font-size:clamp(3.2rem,7vw,6.7rem);margin:26px 0 27px}
     h1 em{font-style:normal;color:var(--lime)}
-    .hero-copy{max-width:650px;color:#b9c4be;font-size:clamp(1.05rem,1.6vw,1.25rem)}
+    .hero-copy{max-width:650px;color:#b6c3d6;font-size:clamp(1.05rem,1.6vw,1.25rem)}
     .hero-actions{display:flex;gap:12px;margin-top:38px;flex-wrap:wrap}
     .hero-metrics{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .metric-card{border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;background:linear-gradient(155deg,rgba(16,40,70,.5),rgba(9,24,43,.6));backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:space-between;min-height:190px}
@@ -47,24 +48,49 @@
     .playlist-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.playlist-card{border:1px solid var(--line);border-radius:24px;padding:10px 10px 16px;background:rgba(255,255,255,.025)}.playlist-card h3{font-size:1.35rem;margin:20px 12px 6px}.playlist-card>p{color:var(--muted);font-size:.9rem;margin:0 12px 18px}.playlist-card .video-shell{border-radius:17px;padding:6px}.playlist-card .video-wrapper{border-radius:12px}.video-tools{margin:0 12px}.video-search{width:100%;height:45px;border:1px solid var(--line);border-radius:11px;background:#0a1a30;color:#fff;padding:0 14px;outline:none}.video-search:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(79,156,255,.12)}.video-search::placeholder{color:#78889e}.video-list{height:310px;overflow-y:auto;margin-top:10px;padding-right:5px;scrollbar-color:#385b86 transparent}.video-option{width:100%;border:0;border-top:1px solid var(--line);background:transparent;color:#dce5f1;text-align:left;padding:12px 8px;display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;cursor:pointer;transition:.2s}.video-option:hover,.video-option.active{background:rgba(79,156,255,.11);color:#fff}.video-option.active{border-left:2px solid var(--lime)}.video-number{color:#71849e;font-size:.7rem;font-weight:700}.video-title{font-size:.78rem;line-height:1.35}.video-duration{color:#7f91a9;font-size:.67rem;white-space:nowrap}.video-empty{padding:25px 8px;color:var(--muted);font-size:.8rem}.playlist-link{display:inline-flex;margin:13px 8px 0;color:#9bc6ff;font-size:.75rem;font-weight:700;text-decoration:none}
     .coverage{background:#eef3f9;color:var(--ink)}.coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.coverage-card{background:#fff;border:1px solid #d8e0eb;border-radius:20px;padding:28px;min-height:220px}.coverage-card span{display:inline-flex;color:#2169c5;font-size:.68rem;font-weight:800;letter-spacing:.12em}.coverage-card h3{font-size:1.25rem;margin:42px 0 12px}.coverage-card p{font-size:.9rem;color:#5a6778}
     .ecosystem{background:#dce8f6;color:var(--ink)}.eco-layout{display:grid;grid-template-columns:340px 1fr;gap:80px}.eco-intro{position:sticky;top:115px;align-self:start}.eco-intro h2{font-size:3.4rem;margin:20px 0}.eco-intro p{color:#536274}.eco-list{border-top:1px solid rgba(7,20,38,.2)}.plugin{display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;padding:27px 0;border-bottom:1px solid rgba(7,20,38,.2)}.plugin-index{color:#6a788b;font:700 .75rem "Manrope"}.plugin h3{font-size:1.15rem;letter-spacing:-.03em;margin-bottom:7px}.plugin p{color:#536274;font-size:.9rem;max-width:570px}.plugin a{text-decoration:none;font-size:.75rem;font-weight:700;border-bottom:1px solid;padding-bottom:3px;white-space:nowrap}
-    .pricing{position:relative}.pricing::before{content:"";position:absolute;width:450px;height:450px;background:rgba(79,156,255,.1);filter:blur(120px);left:-250px}.pricing-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:16px;align-items:stretch}.plan{border:1px solid var(--line);border-radius:26px;padding:38px;background:rgba(255,255,255,.025);display:flex;flex-direction:column}.plan.featured{background:var(--lime);color:var(--ink);transform:translateY(-14px);box-shadow:0 30px 100px rgba(79,156,255,.16)}.tag{align-self:flex-start;border:1px solid currentColor;border-radius:99px;padding:6px 10px;font-size:.64rem;font-weight:800;letter-spacing:.1em}.plan h3{font-size:2rem;margin:30px 0 12px}.plan>p{color:var(--muted);min-height:54px}.featured>p{color:#173b69}.price{font:800 2.3rem "Manrope";letter-spacing:-.05em;margin-top:32px}.price small{font:500 .73rem "DM Sans";display:block;letter-spacing:0;color:inherit;opacity:.65}.terms{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;padding:18px 0;border-bottom:1px solid var(--line)}.featured .terms{border-color:rgba(7,20,38,.18)}.plan ul{list-style:none;display:grid;gap:11px;margin:26px 0 34px;flex:1}.plan li{font-size:.89rem;padding-left:23px;position:relative}.plan li::before{content:"✓";position:absolute;left:0;font-weight:800;color:var(--lime)}.featured li::before{color:var(--ink)}.featured .btn{background:var(--ink);color:var(--cream)}
-    .faq{background:var(--cream);color:var(--ink)}.faq-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px}.faq h2{font-size:clamp(2.5rem,5vw,4.5rem);position:sticky;top:120px}.faq-item{border-top:1px solid #d2d9e3}.faq-item:last-child{border-bottom:1px solid #d2d9e3}.faq-q{width:100%;border:0;background:none;text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:20px;font-weight:700;color:var(--ink);cursor:pointer}.faq-q span:last-child{font-size:1.3rem;transition:.25s}.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}.faq-a>div{overflow:hidden;color:#586575;font-size:.93rem}.faq-a p{padding:0 40px 25px 0}.faq-item.open .faq-a{grid-template-rows:1fr}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+    .pricing{position:relative}.pricing::before{content:"";position:absolute;width:450px;height:450px;background:rgba(79,156,255,.1);filter:blur(120px);left:-250px}.pricing-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:16px;align-items:stretch}.plan{border:1px solid var(--line);border-radius:26px;padding:38px;background:rgba(255,255,255,.025);display:flex;flex-direction:column}.plan.featured{background:linear-gradient(180deg,#123056 0%,#0c213d 100%);border-color:rgba(79,156,255,.55);position:relative;box-shadow:0 30px 80px rgba(0,0,0,.28)}.plan.featured::before{content:"";position:absolute;left:38px;right:38px;top:-1px;height:2px;background:var(--lime);border-radius:2px}.featured .tag{color:var(--lime)}.tag{align-self:flex-start;border:1px solid currentColor;border-radius:99px;padding:6px 10px;font-size:.64rem;font-weight:800;letter-spacing:.1em}.plan h3{font-size:2rem;margin:30px 0 12px}.plan>p{color:var(--muted);min-height:54px}.featured>p{color:#bccbe0}.price{font:800 2.3rem "Manrope";letter-spacing:-.05em;margin-top:32px}.price small{font:500 .73rem "DM Sans";display:block;letter-spacing:0;color:inherit;opacity:.65}.terms{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;padding:18px 0;border-bottom:1px solid var(--line)}.plan ul{list-style:none;display:grid;gap:11px;margin:26px 0 34px;flex:1}.plan li{font-size:.89rem;padding-left:23px;position:relative}.plan li::before{content:"✓";position:absolute;left:0;font-weight:800;color:var(--lime)}    .faq{background:var(--cream);color:var(--ink)}.faq-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px}.faq h2{font-size:clamp(2.5rem,5vw,4.5rem);position:sticky;top:120px}.faq-item{border-top:1px solid #d2d9e3}.faq-item:last-child{border-bottom:1px solid #d2d9e3}.faq-q{width:100%;border:0;background:none;text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:20px;font-weight:700;color:var(--ink);cursor:pointer}.faq-q span:last-child{font-size:1.3rem;transition:.25s}.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}.faq-a>div{overflow:hidden;color:#586575;font-size:.93rem}.faq-a p{padding:0 40px 25px 0}.faq-item.open .faq-a{grid-template-rows:1fr}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
     .cta-section{padding:110px 0 45px}.cta-panel{background:var(--green);color:var(--ink);border-radius:30px;padding:65px;position:relative;overflow:hidden}.cta-panel::after{content:"M";position:absolute;right:-20px;bottom:-125px;font:800 23rem "Manrope";opacity:.08;pointer-events:none;z-index:0}.cta-panel>*{position:relative;z-index:1}.cta-panel h2{font-size:clamp(2.6rem,6vw,5.5rem);max-width:820px}.cta-panel p{margin:22px 0 32px;max-width:650px}.cta-actions{display:flex;gap:12px;flex-wrap:wrap}.cta-actions .btn{position:relative;z-index:2;touch-action:manipulation}.cta-panel .btn-primary{background:var(--ink);color:var(--cream)}.cta-panel .btn-ghost{border-color:rgba(7,20,38,.3)}
     .fraud{margin-top:20px;padding:16px 20px;border:1px solid rgba(7,20,38,.2);border-radius:12px;max-width:720px;font-size:.8rem}
     footer{padding:35px 0 45px;color:#8090a4;font-size:.78rem}.footer-row{display:flex;justify-content:space-between;gap:25px;border-top:1px solid var(--line);padding-top:30px}
     .reveal{opacity:0;transform:translateY(25px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:none}
+    .hero-plans{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.hero-plan{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:99px;padding:8px 15px 8px 9px;background:rgba(255,255,255,.035);font-size:.82rem;color:#d4deec;text-decoration:none;transition:.2s}.hero-plan:hover{border-color:var(--lime);color:#fff}.hero-plan b{font:800 .62rem "JetBrains Mono",monospace;letter-spacing:.08em;border-radius:99px;padding:4px 8px;background:rgba(255,255,255,.08);color:var(--cream)}.hero-plan.cnc b{background:var(--lime);color:var(--ink)}
+    .diff{background:var(--ink-2);border-block:1px solid var(--line)}.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.diff-card{border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;background:linear-gradient(160deg,rgba(79,156,255,.07),rgba(255,255,255,.015));display:flex;flex-direction:column;gap:14px;min-height:250px;transition:.25s}.diff-card:hover{border-color:rgba(79,156,255,.45);transform:translateY(-3px)}.diff-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.diff-ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(79,156,255,.13);color:var(--lime);font-size:1.2rem}.plan-chip{font:700 .6rem "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:5px 9px;color:#c6d3e4;white-space:nowrap}.plan-chip.cnc{border-color:rgba(79,156,255,.55);color:var(--lime)}.diff-card h3{font-size:1.3rem;letter-spacing:-.03em;margin-top:12px}.diff-card p{color:var(--muted);font-size:.9rem}
+    .plan-for{font-size:.82rem;margin:-4px 0 4px;opacity:.85}.plan-group{font:800 .64rem "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-top:6px}.plan li.no{opacity:.5}.plan li.no::before{content:"—";color:inherit}.plan li.plan-group{padding-left:0;margin-top:8px}.plan li.plan-group:first-child{margin-top:0}.plan li.plan-group::before{content:none}.plan li.star{padding-bottom:12px;border-bottom:1px solid var(--line)}
+    .compare{margin-top:70px}.compare-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:22px}.compare-head h3{font-size:clamp(1.7rem,3vw,2.4rem)}.compare-head p{color:var(--muted);max-width:460px;font-size:.92rem}.compare-box{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.02)}.compare-table{width:100%;border-collapse:collapse;font-size:.9rem}.compare-table th,.compare-table td{padding:14px 20px;text-align:left;border-bottom:1px solid var(--line)}.compare-table thead th{position:sticky;top:0;background:#0d2240;font:800 .72rem "Manrope";letter-spacing:.06em;text-transform:uppercase;color:#c9d6e8}.compare-table thead th.col-cnc{color:var(--lime)}.compare-table td:nth-child(n+2),.compare-table th:nth-child(n+2){text-align:center;width:150px}.compare-table td:first-child{color:#d7e1ee}.compare-table td small{display:block;color:#7f91a9;font-size:.76rem}.compare-table tr.grp td{background:rgba(79,156,255,.07);font:800 .68rem "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);padding:11px 20px}.compare-table tbody tr:not(.grp):hover td{background:rgba(255,255,255,.025)}.compare-table tr:last-child td{border-bottom:0}.yes{color:var(--lime);font-weight:800;font-size:1.05rem}.nope{color:#4d6280;font-weight:800}.compare-table td.col-cnc{background:rgba(79,156,255,.04)}.compare-note{margin-top:16px;color:#7f91a9;font-size:.8rem}
+    @media(max-width:900px){.diff-grid{grid-template-columns:1fr 1fr}}
+    .nav{transition:background .3s,box-shadow .3s,border-color .3s,height .3s}.nav.scrolled{background:rgba(7,20,38,.94);border-color:rgba(255,255,255,.14);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .nav-links a{position:relative}.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}.nav-links a:not(.btn):hover::after,.nav-links a.active::after{transform:scaleX(1)}.nav-links a.active{color:#fff}.nav-links .nav-download{color:var(--lime)}
+    .nav-menu-cta{display:none}.nav-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:6px}.nav-toggle span{display:block;width:18px;height:1.5px;background:var(--cream);transition:transform .3s ease}.nav.open .nav-toggle span:first-child{transform:translateY(3.75px) rotate(45deg)}.nav.open .nav-toggle span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+    .btn .arrow{display:inline-block;transition:transform .25s ease}.btn:hover .arrow{transform:translate(2px,-2px)}.btn-client{border-color:rgba(79,156,255,.35);color:var(--lime)}
+    .feature .plan-chip{position:absolute;top:34px;right:34px}
+    .dl-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .hero .eyebrow,.hero h1,.hero-copy,.hero-actions,.hero-plans{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}.hero h1{animation-delay:.08s}.hero-copy{animation-delay:.16s}.hero-actions{animation-delay:.24s}.hero-plans{animation-delay:.32s}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    .diff-wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:auto;padding:36px;border-color:rgba(79,156,255,.35);background:linear-gradient(120deg,rgba(79,156,255,.13),rgba(255,255,255,.015) 70%)}.diff-wide h3{font-size:1.8rem;margin:18px 0 10px}.diff-list{list-style:none;display:grid;gap:12px;border-left:1px solid var(--line);padding-left:30px}.diff-list li{position:relative;padding-left:18px;color:#d4deec;font-size:.92rem}.diff-list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--lime)}
+    .plan-disclaimer{font-size:.76rem;color:#8ea3bf;margin:-14px 0 20px;padding:10px 12px;border-left:2px solid rgba(79,156,255,.5);background:rgba(79,156,255,.05);border-radius:0 8px 8px 0}
+    @media(max-width:900px){.diff-wide{grid-template-columns:1fr;gap:24px}.diff-list{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:22px}}
+    @media(max-width:600px){.diff-wide{padding:24px 22px}.diff-wide h3{font-size:1.45rem}}
+    .organic{position:relative}.org-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.org-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px 28px;background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:border-color .25s,transform .25s}.org-card:hover{border-color:rgba(79,156,255,.45);transform:translateY(-3px)}.org-art{height:110px;border-radius:14px;background:linear-gradient(160deg,rgba(79,156,255,.12),rgba(79,156,255,.02));border:1px solid rgba(79,156,255,.18);display:grid;place-items:center;color:var(--lime);margin-bottom:22px}.org-art svg{width:120px;height:80px}.org-card:hover .org-art svg{transform:scale(1.04)}.org-art svg{transition:transform .4s ease}.org-num{font:700 .7rem "JetBrains Mono",monospace;color:#6f84a1;letter-spacing:.1em}.org-card h3{font-size:1.3rem;letter-spacing:-.03em;margin:6px 0 10px}.org-card>p{color:var(--muted);font-size:.89rem}.org-card ul{list-style:none;display:grid;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}.org-card li{position:relative;padding-left:16px;font-size:.83rem;color:#cdd8e7}.org-card li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--lime)}.org-card em{font-style:normal;color:var(--lime);white-space:nowrap}.org-note{margin-top:22px;display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid rgba(79,156,255,.3);border-radius:14px;background:rgba(79,156,255,.06)}.org-note p{color:#c6d3e4;font-size:.88rem}
+    @media(max-width:600px){.org-note{flex-direction:column;align-items:flex-start;gap:10px}}
+    @media(max-width:1000px){.org-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.org-grid{grid-template-columns:1fr}.org-art{height:96px}}
+    .faq-layout>div{min-width:0}.faq-q span:last-child{flex:0 0 22px;height:22px;line-height:22px;text-align:center;align-self:flex-start}.nav-menu-cta{width:100%}
+    .faq-q:hover span:first-child{color:#2169c5}.faq-q span:first-child{transition:color .2s}
+    @media(max-width:1100px){.nav-toggle{display:inline-flex}.nav-cta{display:none}.nav .nav-links{display:flex;position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column;gap:0;padding:10px 18px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(7,20,38,.97);backdrop-filter:blur(18px);box-shadow:0 24px 60px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s,visibility .25s}.nav.open .nav-links{opacity:1;visibility:visible;transform:none}.nav-links a:not(.btn){padding:14px 2px;border-bottom:1px solid var(--line);font-size:1rem}.nav-links a:not(.btn)::after{display:none}.nav-menu-cta{display:inline-flex;margin-top:16px}.feature .plan-chip{position:static;display:inline-flex;margin-top:22px}.feature h3{margin-top:18px}}
+    @media(max-width:600px){.diff-grid{grid-template-columns:1fr}.hero{padding-top:125px}h1{font-size:clamp(2.45rem,11vw,3.25rem);margin:20px 0}.hero-actions .btn{width:100%}.hero-metrics{margin-top:44px}.metric-card{min-height:auto;padding:24px 22px}.metric-card b{font-size:2.6rem}.dl-row{grid-template-columns:1fr}.download-card{padding:26px 20px!important}.download-section{padding:85px 0!important}.video-list{height:240px}.diff-card{min-height:auto;padding:24px 22px}.coverage-card{min-height:auto}.coverage-card h3{margin-top:24px}.plan.featured::before{left:27px;right:27px}.faq-a p{padding-right:0}.feature h3{font-size:1.4rem}.compare{margin-top:50px}.cta-panel::after{font-size:15rem;bottom:-80px}.compare-table th,.compare-table td{padding:12px 12px}.compare-table td:nth-child(n+2),.compare-table th:nth-child(n+2){width:74px}.compare-table{font-size:.82rem}.hero-plan{font-size:.76rem}}
     @media(max-width:900px){.nav-links{display:none}.nav .btn{min-height:42px;padding:0 14px;font-size:.78rem}.hero{padding-top:145px;min-height:auto}.hero-metrics,.section-head,.eco-layout,.faq-layout,.playlist-grid{grid-template-columns:1fr}.pain-grid{grid-template-columns:1fr 1fr}.pain:nth-child(2){border-right:0}.pain:nth-child(-n+2){border-bottom:1px solid #d8dee8}.feature:nth-child(n){grid-column:span 12}.coverage-grid{grid-template-columns:1fr 1fr}.eco-intro,.faq h2{position:static}.pricing-grid{grid-template-columns:1fr}.plan.featured{transform:none}.eco-layout,.faq-layout{gap:45px}}
     @media(max-width:600px){.wrap{width:min(100% - 24px,1180px)}.nav{top:8px}.brand small{display:none}h1{font-size:3.25rem}.hero{padding-bottom:70px}.hero-metrics,.playlist-grid{grid-template-columns:1fr}.section-head{gap:22px}.pain-grid,.coverage-grid{grid-template-columns:1fr}.pain{min-height:auto;border-right:0!important;border-bottom:1px solid #d8dee8!important}.pain h3{margin-top:35px}.feature{padding:27px}.feature:nth-child(3) ul{grid-template-columns:1fr}.plugin{grid-template-columns:38px 1fr}.plugin a{grid-column:2}.plan{padding:27px}.cta-panel{padding:38px 25px}.footer-row{flex-direction:column}.section-head h2,.eco-intro h2{font-size:2.65rem}section{padding:85px 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.strip-track{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.strip-track{animation:none}.reveal{opacity:1;transform:none;transition:none}.hero .eyebrow,.hero h1,.hero-copy,.hero-actions,.hero-plans{animation:none}}
   </style>
 </head>
 <body>
   <nav class="nav" aria-label="Navegação principal">
     <a class="brand" href="#inicio">MOBPRO<b>.</b><small>INDUSTRIAL SUITE</small></a>
-    <div class="nav-links">
-      <a href="#recursos">Recursos</a><a href="#demonstracao">Demonstração</a><a href="#ecossistema">Ecossistema</a><a href="#planos">Planos</a><a href="#download" style="color:var(--lime);font-weight:700;">Baixar App 📥</a>
+    <div class="nav-links" id="nav_links">
+      <a href="#recursos">Recursos</a><a href="#diferenciais">Diferenciais</a><a href="#organicos">Orgânicos</a><a href="#demonstracao">Demonstração</a><a href="#planos">Planos</a><a href="#comparar">Comparar</a><a href="#download" class="nav-download">Área do cliente</a>
+      <a class="btn btn-primary nav-menu-cta" href="#contato">Falar com especialista <span class="arrow">↗</span></a>
     </div>
-    <a class="btn btn-primary" href="#contato">Falar com especialista <span class="arrow">↗</span></a>
+    <a class="btn btn-primary nav-cta" href="#contato">Falar com especialista <span class="arrow">↗</span></a>
+    <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav_links"><span></span><span></span></button>
   </nav>
 
   <main>
@@ -75,10 +101,14 @@
         <p class="hero-copy">Automação CNC offline para padronizar móveis sob medida, eliminar erros de corte e converter qualquer modelagem em nesting industrial e G-code pronto para a router.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#planos">Consultar licenças <span class="arrow">↗</span></a>
-          <a class="btn btn-ghost" href="#download" style="border-color:rgba(79,156,255,.35); color:var(--lime);">Já é cliente? Baixar App 📥</a>
+          <a class="btn btn-ghost btn-client" href="#download">Já é cliente? Baixar o app <span>↓</span></a>
           <a class="btn btn-ghost" href="#demonstracao">Ver em funcionamento <span>↓</span></a>
         </div>
-        
+        <div class="hero-plans">
+          <a class="hero-plan" href="#planos"><b>BASIC</b>Projeto, orçamento, etiquetas e CSV para Cortecloud</a>
+          <a class="hero-plan cnc" href="#planos"><b>FURAÇÕES CNC</b>Tudo do Basic + nesting, furações automáticas e G-code direto</a>
+        </div>
+
         <div class="hero-metrics reveal">
           <div class="metric-card">
             <div class="metric-header">
@@ -93,23 +123,23 @@
               <b>100%</b>
               <span class="metric-tag">Privacidade</span>
             </div>
-            <span>Engenharia, cálculo de nesting e código G-code processados offline.</span>
+            <span>Engenharia, nesting e G-code calculados no seu computador. Internet só para licença e QR Code.</span>
           </div>
 
           <div class="metric-card">
             <div class="metric-header">
-              <b>Nativo</b>
-              <span class="metric-tag">CAM & Router</span>
+              <b>10</b>
+              <span class="metric-tag">Pós-processadores</span>
             </div>
-            <span>Exportação direta para usinagem sem depender de softwares CAM externos.</span>
+            <span>G-code nativo para Mach3, Syntec, RichAuto, NC Studio, GRBL e outras controladoras, sem CAM externo.</span>
           </div>
         </div>
       </div>
     </header>
 
     <div class="strip" aria-hidden="true"><div class="strip-track">
-      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Exportação DXF</span><span>Biblioteca dinâmica</span><span>SketchUp</span>
-      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Exportação DXF</span><span>Biblioteca dinâmica</span><span>SketchUp</span>
+      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Furação automática</span><span>Tamponamento de conjunto</span><span>Edição múltipla</span><span>Canto oblíquo dinâmico</span><span>Pés cônicos</span><span>Tampos orgânicos</span><span>Muxarabi</span><span>Simulação de usinagem</span><span>Exportação DXF</span>
+      <span>G-code nativo</span><span>Nesting avançado</span><span>Etiquetas QR Code</span><span>Furação automática</span><span>Tamponamento de conjunto</span><span>Edição múltipla</span><span>Canto oblíquo dinâmico</span><span>Pés cônicos</span><span>Tampos orgânicos</span><span>Muxarabi</span><span>Simulação de usinagem</span><span>Exportação DXF</span>
     </div></div>
 
     <section class="light">
@@ -121,7 +151,7 @@
         <div class="pain-grid reveal">
           <article class="pain"><span class="num">01</span><h3>Fim da dependência manual</h3><p>Qualquer operador gera engenharia precisa a partir de um processo padronizado direto do 3D.</p></article>
           <article class="pain"><span class="num">02</span><h3>Economia de chapa</h3><p>Nesting com algoritmo avançado e reaproveitamento inteligente de retalhos minimizam sobras.</p></article>
-          <article class="pain"><span class="num">03</span><h3>Rastreio no chão de fábrica</h3><p>Etiquetas térmicas e PIMACO com QR Code identificam módulo, cliente, fita de borda e furações.</p></article>
+          <article class="pain"><span class="num">03</span><h3>Rastreio no chão de fábrica</h3><p>Etiquetas térmicas e PIMACO identificam módulo, cliente, fita de borda e furações; o QR Code abre o módulo ou o projeto em 3D.</p></article>
           <article class="pain"><span class="num">04</span><h3>Qualidade industrial repetível</h3><p>Sequenciamento automático: furos de cavilha, minifix, rebaixos de fundo e corte perimetral com tabs.</p></article>
         </div>
       </div>
@@ -134,16 +164,86 @@
           <p>Velocidade de projeto no SketchUp aliada à fidelidade mecânica na usinagem Router CNC.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature reveal"><div class="icon">01</div><h3>Fabricação CNC impecável</h3><ul>
-            <li><strong>G-code nativo</strong> com suporte ATC para até 16 ferramentas e controle de Spindle.</li><li>Estratégia de usinagem com desbaste escalonado e passe final de acabamento.</li><li>Usinagem contínua de curvas para evitar paradas e marcas na router.</li><li>Exportação parametrizada direta via <strong>DXF e .Gcode / .PROG</strong>.</li>
+          <article class="feature reveal"><div class="icon">01</div><span class="plan-chip cnc">Furações CNC</span><h3>Fabricação CNC impecável</h3><ul>
+            <li><strong>G-code nativo</strong> com suporte ATC para até 16 ferramentas e controle de Spindle.</li><li>Estratégia de usinagem com desbaste escalonado e passe final de acabamento.</li><li>Usinagem contínua de curvas para evitar paradas e marcas na router.</li><li>Exportação direta em <strong>G-code (.nc, .tap, .gcode, .mmg, .txt) e DXF</strong>.</li>
           </ul></article>
-          <article class="feature reveal"><div class="icon">02</div><h3>Nesting e rendimento de chapa</h3><ul>
+          <article class="feature reveal"><div class="icon">02</div><span class="plan-chip cnc">Furações CNC</span><h3>Nesting e rendimento de chapa</h3><ul>
             <li>Algoritmo com rotação por sentido de veio e união de múltiplos projetos.</li><li>Configuração de folga de fresa (Kerf), abas de fixação (tabs) e sobras reaproveitáveis.</li><li><strong>CSV editável</strong> totalmente formatado para importação no Cortecloud.</li><li>Segurança reforçada para peças pequenas não soltarem na mesa de vácuo.</li>
           </ul></article>
-          <article class="feature reveal"><div class="icon">03</div><h3>Edição e parametrização em 3D</h3><ul>
+          <article class="feature reveal"><div class="icon">03</div><span class="plan-chip cnc">Furações CNC</span><h3>Edição e parametrização em 3D</h3><ul>
             <li>Mais de <strong>200 blocos paramétricos</strong> estruturados para marcenaria.</li><li>Edição visual unitária de furos (minifix, cavilha, dobradiça, VB).</li><li>Detecção automática de colisões e furações incompatíveis.</li><li>Furação frontal e traseira com leitura paramétrica de faces.</li><li>Orientação automática e bloqueio do veio da madeira.</li><li>Usinagens geométricas independentes e não destrutivas.</li>
           </ul></article>
         </div>
+      </div>
+    </section>
+
+    <section class="diff" id="diferenciais">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Diferenciais</span><h2>O que muda no seu dia a dia.</h2></div>
+          <p>Recursos pensados a partir do chão de fábrica. Cada cartão indica em qual plano ele está disponível.</p>
+        </div>
+        <div class="diff-grid">
+          <article class="diff-card diff-wide reveal">
+            <div>
+              <div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M3 13l8 8"/><path d="M3 9h6l6 6v6"/></svg></span><span class="plan-chip">Todos os planos</span></div>
+              <h3>Canto oblíquo dinâmico</h3>
+              <p>Caixa de canto com frente a 45° gerada pelo Construtor. Mude as profundidades das duas paredes e o ângulo, as laterais, a base, o tampo e as travessas se recalculam com o corte correto.</p>
+            </div>
+            <ul class="diff-list">
+              <li>Laterais com a ponta cortada sobre a diagonal; base e tampo em pentágono</li>
+              <li>Portas, gavetas e divisórias posicionadas no plano da frente 45°</li>
+              <li>Mesmas opções de fundo, base, rodapé e topo da caixa comum</li>
+              <li>No Furações CNC: dobradiças, calços e minifix já calculados no ângulo</li>
+            </ul>
+          </article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M3 12h18"/></svg></span><span class="plan-chip cnc">Furações CNC</span></div><h3>Furação automática sem colisão</h3><p>Cavilha, minifix, VB, dobradiça, corrediça e pistão aplicados a partir dos seus presets. Furos que se cruzam são deslocados automaticamente, respeitando parede mínima de 2 mm.</p></article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></span><span class="plan-chip cnc">Furações CNC</span></div><h3>Presets da ferragem que você usa</h3><p>Editor 3D por face, peça e conjunto. Duplique um preset genérico e ajuste às cotas da sua marca de corrediça, dobradiça ou conector. A furação segue exatamente o que você configurar.</p></article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14l3-3 3 2 4-5"/><path d="M8 21h8"/></svg></span><span class="plan-chip cnc">Furações CNC</span></div><h3>Simule antes de cortar</h3><p>Visualize o percurso, a sequência de ferramentas (ATC) e possíveis colisões antes de mandar o arquivo para a router. Menos chapa perdida em teste.</p></article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M9 3v18M15 3v18"/></svg></span><span class="plan-chip">Todos os planos</span></div><h3>Tamponamento de conjunto</h3><p>Selecione os módulos, clique nas bordas e o MOBPRO gera tamponamentos e engrossos com cantos resolvidos e fita contada para o orçamento.</p></article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="12" height="13" rx="1.5"/><path d="M8 4h11.5A1.5 1.5 0 0 1 21 5.5V17"/></svg></span><span class="plan-chip">Todos os planos</span></div><h3>Edição múltipla de módulos</h3><p>Altere medidas, materiais e regras de vários módulos de uma vez, com um único desfazer. Ideal para cozinhas e dormitórios completos.</p></article>
+          <article class="diff-card reveal"><div class="diff-top"><span class="diff-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></span><span class="plan-chip">Todos os planos</span></div><h3>Etiqueta que mostra o móvel em 3D</h3><p>O QR Code abre no celular o módulo ou o projeto inteiro em 3D simplificado, enviado à nuvem na geração das etiquetas. Térmicas ou PIMACO, com controle das já impressas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="organic" id="organicos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Gerador de Orgânicos · Furações CNC</span><h2>Muito além do móvel reto.</h2></div>
+          <p>Peças curvas, pés cônicos, tampos orgânicos e muxarabis gerados por parâmetros. No Furações CNC, eles saem prontos para produzir: contorno real, curvas e usinagens enviados para a máquina.</p>
+        </div>
+        <div class="org-grid">
+          <article class="org-card reveal">
+            <div class="org-art" aria-hidden="true"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 66 C 30 12, 90 12, 106 66"/><path d="M24 66 C 38 26, 82 26, 96 66" opacity=".45"/><path d="M30 46v6M40 33v6M52 26v6M64 25v6M76 29v6M88 38v6" opacity=".7"/></svg></div>
+            <span class="org-num">01</span>
+            <h3>Peças curvas</h3>
+            <p>Desenhe o caminho e o MOBPRO gera a peça curva e a versão planificada para produção.</p>
+            <ul><li>Lado interno e espelhamento do caminho</li><li>Kerf e desbaste para curvar a chapa na router</li></ul>
+          </article>
+          <article class="org-card reveal">
+            <div class="org-art" aria-hidden="true"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M42 10h36l-10 60H52z"/><path d="M45 26h30M48 44h24M50 58h20" opacity=".55"/><ellipse cx="60" cy="10" rx="18" ry="3" opacity=".7"/></svg></div>
+            <span class="org-num">02</span>
+            <h3>Pés cônicos</h3>
+            <p>Pés e bases cônicas montados em chapa, com casca externa e estrutura interna calculadas.</p>
+            <ul><li>Anéis internos estruturais e fechamentos</li><li>Fixação definida no próprio gerador e presets rápidos</li></ul>
+          </article>
+          <article class="org-card reveal">
+            <div class="org-art" aria-hidden="true"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 40 C 20 14, 58 12, 70 22 C 80 30, 100 20, 104 38 C 108 58, 78 70, 58 62 C 42 56, 20 66, 20 40z"/><circle cx="70" cy="22" r="2.4" fill="currentColor"/><circle cx="104" cy="38" r="2.4" fill="currentColor"/><circle cx="58" cy="62" r="2.4" fill="currentColor"/></svg></div>
+            <span class="org-num">03</span>
+            <h3>Tampos orgânicos</h3>
+            <p>Feijão, gota, elipse, ovoide, trapézio curvo ou forma livre, editados por pontos e curvas suaves.</p>
+            <ul><li>Raio por vértice e cotas por trecho</li><li>Engrossos e cavilhas gerados junto</li></ul>
+          </article>
+          <article class="org-card reveal">
+            <div class="org-art" aria-hidden="true"><svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="30" y="8" width="60" height="64" rx="1.5"/><path d="M42 8v64M54 8v64M66 8v64M78 8v64M30 20h60M30 32h60M30 44h60M30 56h60" opacity=".6"/></svg></div>
+            <span class="org-num">04</span>
+            <h3>Muxarabi</h3>
+            <p>Painéis, portas e frentes em grade, encaixados em meia-madeira ou usinados em chapa única.</p>
+            <ul><li>Ripas verticais, horizontais ou cruzadas</li><li>Vãos distribuídos e reedição do painel já gerado</li></ul>
+          </article>
+        </div>
+        <div class="org-note reveal"><span class="plan-chip cnc">Furações CNC</span><p>A produção das formas orgânicas é exclusiva do Furações CNC. No Basic, os geradores servem só para visualizar o projeto: na lista de corte, as peças saem sempre retas e sem usinagens.</p></div>
       </div>
     </section>
 
@@ -156,10 +256,10 @@
         <div class="coverage-grid">
           <article class="coverage-card reveal"><span>01 · CONSTRUTOR</span><h3>Construção guiada de móveis</h3><p>Criação de módulos de armários, soluções de canto L, gaveteiros e móveis sob medida.</p></article>
           <article class="coverage-card reveal"><span>02 · PREPARAÇÃO</span><h3>Blocos, faces e componentes</h3><p>Inserção com mira rápida, componentes dinâmicos, troca de ferragens e padronização de materiais.</p></article>
-          <article class="coverage-card reveal"><span>03 · ENGENHARIA</span><h3>Recortes e usinagens</h3><p>Rasgos de fundo, canais de LED, furações de sistema 32 e peças curvas com inspeção visual 3D.</p></article>
+          <article class="coverage-card reveal"><span>03 · ENGENHARIA · FURAÇÕES CNC</span><h3>Recortes e usinagens</h3><p>Rasgos de fundo, canais de LED, furações de sistema 32 e peças curvas com inspeção visual 3D.</p></article>
           <article class="coverage-card reveal"><span>04 · GESTÃO</span><h3>Orçamentos e centro de custos</h3><p>Lista analítica de materiais, fita de borda, ferragens e metragem quadrada para formação de preço.</p></article>
-          <article class="coverage-card reveal"><span>05 · PRODUÇÃO</span><h3>Nesting, sobras e etiquetas</h3><p>Aproveitamento ótimo da chapa, reaproveitamento de retalhos e etiquetas industriais com QR Code.</p></article>
-          <article class="coverage-card reveal"><span>06 · INTEGRAÇÃO</span><h3>Cortecloud e máquina CNC</h3><p>Exportação para serviços terceirizados ou usinagem própria via código G-code direto sem software intermediário.</p></article>
+          <article class="coverage-card reveal"><span>05 · PRODUÇÃO</span><h3>Nesting, sobras e etiquetas</h3><p>Etiquetas industriais com QR Code em todos os planos; no Furações CNC, nesting com aproveitamento de chapa e reaproveitamento de retalhos.</p></article>
+          <article class="coverage-card reveal"><span>06 · INTEGRAÇÃO</span><h3>Cortecloud e máquina CNC</h3><p>CSV para terceirizados em todos os planos: peças retas no Basic, com usinagens no Furações CNC, que também gera G-code direto para a sua router.</p></article>
         </div>
       </div>
     </section>
@@ -193,13 +293,13 @@
           <article class="plugin"><span class="plugin-index">02</span><div><h3>Categorias & Nome Módulo</h3><p>Atribuição em lote de fitas de borda, furações coordenadas e identificação por ambiente.</p></div><a href="https://www.youtube.com/watch?v=dMBzq8yBsXA&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=4&t=53s" target="_blank" rel="noopener">Ver categorias ↗</a></article>
           <article class="plugin"><span class="plugin-index">03</span><div><h3>Materiais & Texturas</h3><p>Orientação do veio da madeira sincronizada com o plano de corte e mapeamento de bordas.</p></div><a href="https://www.youtube.com/watch?v=BEJ-tsEkWLY&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=6&t=96s" target="_blank" rel="noopener">Ver em ação ↗</a></article>
           <article class="plugin"><span class="plugin-index">04</span><div><h3>Limpeza Router</h3><p>Purga técnica de arestas soltas e reparo de faces para usinagens sem travamento na máquina.</p></div><a href="https://www.youtube.com/watch?v=3y2FVAs8E-w&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=9" target="_blank" rel="noopener">Ver em ação ↗</a></article>
-          <article class="plugin"><span class="plugin-index">05</span><div><h3>Relatórios e Integração</h3><p>Exportação de chapas, fitas e furações em formato CSV pronto para Cortecloud.</p></div><a href="https://www.youtube.com/watch?v=vyQPOne18n0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=17&t=30s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">05</span><div><h3>Relatórios e Integração</h3><p>Exportação de chapas e fitas em CSV pronto para Cortecloud; furações e usinagens seguem junto no Furações CNC.</p></div><a href="https://www.youtube.com/watch?v=vyQPOne18n0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=17&t=30s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
           <article class="plugin"><span class="plugin-index">06</span><div><h3>Renomear Múltiplo</h3><p>Padronize códigos e nomenclaturas de centenas de peças com apenas um clique.</p></div><a href="https://www.youtube.com/watch?v=dCKLNRaWDn4&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=2" target="_blank" rel="noopener">Ver em ação ↗</a></article>
           <article class="plugin"><span class="plugin-index">07</span><div><h3>Plano de Montagem</h3><p>Geração de esquemas detalhados e guias técnicos de montagem para a equipe da fábrica.</p></div><a href="https://www.youtube.com/watch?v=RHXTEOP2ee0&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=12&t=55s" target="_blank" rel="noopener">Ver plano ↗</a></article>
-          <article class="plugin"><span class="plugin-index">08</span><div><h3>Plano de Corte Otimizado</h3><p>Nesting com alto índice de aproveitamento de chapa calculado 100% offline.</p></div><a href="https://www.youtube.com/watch?v=FSe2jrWprFk&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=19&t=83s" target="_blank" rel="noopener">Ver plano ↗</a></article>
-          <article class="plugin"><span class="plugin-index">09</span><div><h3>Exportação de G-code</h3><p>Arquivo direto para a CNC (.nc, .tap, .gcode, .prog), eliminando a etapa de CAM externa.</p></div><a href="https://www.youtube.com/watch?v=o7_VJZ70RFg&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=21&t=74s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
+          <article class="plugin"><span class="plugin-index">08</span><div><h3>Plano de Corte Otimizado</h3><p>Nesting com alto índice de aproveitamento de chapa calculado 100% offline. Incluso no Furações CNC.</p></div><a href="https://www.youtube.com/watch?v=FSe2jrWprFk&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=19&t=83s" target="_blank" rel="noopener">Ver plano ↗</a></article>
+          <article class="plugin"><span class="plugin-index">09</span><div><h3>Exportação de G-code</h3><p>Arquivo direto para a CNC (.nc, .tap, .gcode, .mmg, .txt), eliminando a etapa de CAM externa.</p></div><a href="https://www.youtube.com/watch?v=o7_VJZ70RFg&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=21&t=74s" target="_blank" rel="noopener">Ver exportação ↗</a></article>
           <article class="plugin"><span class="plugin-index">10</span><div><h3>Usinagem de Peças Curvas</h3><p>Interpolação de arcos e trajetórias contínuas sem degraus ou faceteamento na router.</p></div><a href="https://www.youtube.com/watch?v=MMLYh0aeSpo&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=40" target="_blank" rel="noopener">Ver usinagem ↗</a></article>
-          <article class="plugin"><span class="plugin-index">11</span><div><h3>Etiquetas Industriais QR Code</h3><p>Geração de etiquetas com informações de usinagem e modelo 3D visualizável por celular.</p></div><a href="https://www.youtube.com/watch?v=5jgmBkeGJ2g&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=37" target="_blank" rel="noopener">Ver etiquetas ↗</a></article>
+          <article class="plugin"><span class="plugin-index">11</span><div><h3>Etiquetas Industriais QR Code</h3><p>Etiquetas com informações de usinagem e QR Code que abre o módulo ou o projeto em 3D simplificado no celular.</p></div><a href="https://www.youtube.com/watch?v=5jgmBkeGJ2g&list=PLbKCm5GS-f3YqEwsWRjVs4jhuozOn8Lu7&index=37" target="_blank" rel="noopener">Ver etiquetas ↗</a></article>
         </div>
       </div>
     </section>
@@ -208,12 +308,65 @@
       <div class="wrap">
         <div class="section-head reveal"><div><span class="eyebrow">Licenciamento</span><h2>Escolha o motor da sua produção.</h2></div><p>Planos escaláveis pensados para marcenarias em expansão e indústrias automatizadas.</p></div>
         <div class="pricing-grid">
-          <article class="plan reveal"><span class="tag">PARA PROJETAR E ORGANIZAR</span><h3>MOBPRO Suite Basic</h3><p>Ideal para projetistas, lojas de móveis e marcenarias terceirizadas.</p><div class="price">Sob consulta<small>Disponibilidade via atendimento</small></div><div class="terms">2 licenças · PIX ou cartão · ativação rápida</div><ul>
-            <li>Biblioteca paramétrica com mais de 200 blocos</li><li>Plano de corte otimizado nativo</li><li>CSV formatado para Cortecloud</li><li>Relatórios de custo e orçamentação ágil</li><li>Etiquetas térmicas e PIMACO com QR Code</li><li>Ecossistema de plugins de produtividade</li>
-          </ul><a class="btn btn-ghost" href="https://t.me/elvismeiado" target="_blank" rel="noopener">Solicitar orçamento Basic ↗</a></article>
-          <article class="plan featured reveal"><span class="tag">AUTOMAÇÃO CNC TOTAL</span><h3>MOBPRO Furações CNC</h3><p>Para indústrias e marcenarias com Router CNC que exigem independência de CAM.</p><div class="price">Sob consulta<small>Condições exclusivas sob demanda</small></div><div class="terms">3 licenças · suporte de implantação · pós-processador</div><ul>
-            <li>Todos os recursos do Suite Basic</li><li>Edição e visualização 3D de furações e usinagens</li><li>Motor CAM nativo para Router CNC</li><li>Nesting com controle de abas (tabs) e retalhos</li><li>Geração direta de G-code (.nc, .tap, .prog) e DXF</li><li>Plugin de Limpeza e Preparação Router CNC</li><li>Suporte técnico especializado em usinagem</li>
-          </ul><a class="btn" href="https://t.me/mobpro_suite" target="_blank" rel="noopener">Solicitar licença CNC Full ↗</a></article>
+          <article class="plan reveal"><span class="tag">PROJETAR · ORÇAR · PRODUZIR</span><h3>MOBPRO Basic</h3><p>Para projetistas, lojas de móveis e marcenarias que cortam em terceiros (Cortecloud, seccionadora) ou produzem sem router.</p><div class="price">Sob consulta<small>Disponibilidade via atendimento</small></div><div class="terms">2 licenças · PIX ou cartão · ativação rápida</div><ul>
+            <li class="plan-group">Projeto</li>
+            <li>Construtor de móveis: armários, canto L, gaveteiros e conjugados</li><li>Canto oblíquo dinâmico com frente 45°</li><li>Biblioteca paramétrica com mais de 200 blocos</li><li>Edição múltipla e tamponamento de conjunto</li><li>Materiais, veio e fitas de borda por peça</li>
+            <li class="plan-group">Produção</li>
+            <li>Orçamento e centro de custos</li><li>Etiquetas térmicas e PIMACO com QR Code 3D</li><li>Plano de montagem</li><li>CSV para Cortecloud com peças retas, sem usinagens</li>
+            <li class="plan-group">Não inclui</li>
+            <li class="no">Nesting, furações automáticas, G-code e DXF</li><li class="no">Envio de usinagens para o Cortecloud</li><li class="no">Produção de formas orgânicas (no Basic, só visual; cortes retos)</li>
+          </ul><a class="btn btn-ghost" href="https://t.me/elvismeiado" target="_blank" rel="noopener">Solicitar orçamento Basic <span class="arrow">↗</span></a></article>
+          <article class="plan featured reveal"><span class="tag">AUTOMAÇÃO CNC COMPLETA</span><h3>MOBPRO Furações CNC</h3><p>Para marcenarias e indústrias com Router CNC que querem sair do SketchUp com o arquivo de máquina pronto.</p><div class="price">Sob consulta<small>Condições exclusivas sob demanda</small></div><div class="terms">3 licenças · suporte de implantação · pós-processador</div><ul>
+            <li class="star"><strong>Tudo do Basic</strong>, sem exceção</li>
+            <li class="plan-group">Produção</li>
+            <li>Nesting com sobras e reaproveitamento de retalhos</li><li>CSV para Cortecloud com furações e usinagens</li><li>Formas orgânicas para produção: peças curvas, pés cônicos, tampos orgânicos e muxarabi</li>
+            <li class="plan-group">Furações</li>
+            <li>Furações paramétricas guiadas pelos seus presets</li><li>Presets de usinagem editáveis no editor 3D</li><li>Resolução automática de conflitos de furação</li><li>Recorte e subtração de sólidos: rasgos, rebaixos e canais</li>
+            <li class="plan-group">Router CNC</li>
+            <li>G-code direto para 10 controladoras, com troca de ferramenta (ATC)</li><li>Simulação de usinagem e verificação de colisões</li><li>Usinagem de curvas (kerf e desbaste) e exportação DXF</li><li>Suporte técnico especializado em usinagem</li>
+          </ul><p class="plan-disclaimer">As furações seguem exclusivamente os presets configurados pelo usuário. Confira a configuração antes de usinar.</p><a class="btn btn-primary" href="https://t.me/mobpro_suite" target="_blank" rel="noopener">Solicitar Furações CNC <span class="arrow">↗</span></a></article>
+        </div>
+
+        <div class="compare" id="comparar">
+          <div class="compare-head reveal"><h3>Compare os planos.</h3><p>Tudo o que o Basic faz também está no Furações CNC. A diferença está na engenharia de furação e na saída direta para a máquina.</p></div>
+          <div class="compare-box reveal">
+            <table class="compare-table">
+              <thead><tr><th scope="col">Recurso</th><th scope="col">Basic</th><th scope="col" class="col-cnc">Furações CNC</th></tr></thead>
+              <tbody>
+                <tr class="grp"><td colspan="3">Projeto e modelagem</td></tr>
+                <tr><td>Construtor de móveis<small>Armários, canto L, gaveteiros, conjugados</small></td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Canto oblíquo dinâmico<small>Frente 45° com peças recalculadas no ângulo</small></td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Biblioteca com 200+ blocos paramétricos</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Edição múltipla de módulos</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Tamponamento de conjunto</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Materiais, veio, texturas e fitas de borda</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Formas orgânicas para visualização<small>No Basic, as peças saem retas e sem usinagens no corte</small></td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Formas orgânicas para produção<small>Peças curvas, pés cônicos, tampos orgânicos, muxarabi</small></td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr class="grp"><td colspan="3">Organização e gestão</td></tr>
+                <tr><td>Renomear, categorias e nome do módulo</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Orçamento e centro de custos</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Plano de montagem</td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr class="grp"><td colspan="3">Produção</td></tr>
+                <tr><td>Etiquetas térmicas e PIMACO<small>QR Code abre o módulo ou o projeto em 3D simplificado</small></td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>CSV para Cortecloud<small>Peças retas: medidas, material e fitas</small></td><td><span class="yes" aria-label="Incluso">✓</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>CSV para Cortecloud com usinagens<small>Furações, rasgos e rebaixos enviados junto das peças</small></td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Nesting com sobras e retalhos</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr class="grp"><td colspan="3">Furações e usinagens</td></tr>
+                <tr><td>Furações paramétricas pelos seus presets<small>Cavilha, minifix, VB, dobradiça, corrediça, pistão</small></td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Presets editáveis com editor 3D</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Resolução automática de conflitos</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Furação de face frontal e traseira</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Recorte e subtração de sólidos<small>Rasgos de fundo, rebaixos, canais de LED</small></td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr class="grp"><td colspan="3">Router CNC</td></tr>
+                <tr><td>G-code direto, sem CAM externo<small>10 pós-processadores, troca de ferramenta (ATC)</small></td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Simulação e verificação de colisões</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Usinagem de curvas (kerf e desbaste)</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Exportação DXF</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+                <tr><td>Suporte especializado em usinagem</td><td><span class="nope" aria-label="Não incluso">—</span></td><td class="col-cnc"><span class="yes" aria-label="Incluso">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="compare-note">Controladoras suportadas: G-code padrão, Mach3/Mach4, GRBL, Syntec, DSP RichAuto, NC Studio, Usitech 2S, TRAK, ALCA ATC e DNA ATCL.<br>As furações são paramétricas, mas seguem exclusivamente os presets configurados pelo usuário. A MOBPRO não se responsabiliza por erros decorrentes de configuração incorreta.</p>
         </div>
       </div>
     </section>
@@ -230,7 +383,7 @@
 
         <div class="download-card reveal" style="max-width:760px; margin:0 auto; background:rgba(16,40,70,0.65); border:1px solid var(--line); border-radius:24px; padding:38px 32px; backdrop-filter:blur(16px); box-shadow:0 25px 60px rgba(0,0,0,0.3);">
           <div style="display:flex; align-items:center; gap:14px; margin-bottom:24px;">
-            <div style="width:46px; height:46px; border-radius:14px; background:rgba(79,156,255,0.15); border:1px solid var(--lime); display:grid; place-items:center; color:var(--lime); font-size:1.3rem;">📥</div>
+            <div style="width:46px; height:46px; border-radius:14px; background:rgba(79,156,255,0.15); border:1px solid var(--lime); display:grid; place-items:center; color:var(--lime);" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg></div>
             <div>
               <h3 style="font-size:1.35rem; color:#fff; font-family:'Manrope',sans-serif;">Acesse seu Aplicativo</h3>
               <p style="color:var(--muted); font-size:0.88rem; margin-top:2px;">Insira sua chave para validar seu plano e liberar o instalador.</p>
@@ -243,12 +396,12 @@
               <input type="text" id="input_license_key" required placeholder="Ex: MOBPRO-XXXX-XXXX-XXXX" style="width:100%; height:52px; background:#071426; border:1px solid var(--line); border-radius:12px; padding:0 16px; font-family:'JetBrains Mono', monospace; font-size:1.02rem; font-weight:700; color:#fff; text-transform:uppercase; outline:none; transition:0.25s;" onfocus="this.style.borderColor='var(--lime)'" onblur="this.style.borderColor='var(--line)'">
             </div>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="dl-row">
               <div>
                 <label for="select_download_target" style="display:block; font-size:0.8rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Sistema Operacional</label>
                 <select id="select_download_target" style="width:100%; height:52px; background:#071426; border:1px solid var(--line); border-radius:12px; padding:0 14px; font-family:'DM Sans', sans-serif; font-size:0.92rem; font-weight:600; color:#fff; outline:none; cursor:pointer;">
-                  <option value="windows">💻 Windows (64-bit)</option>
-                  <option value="macos">🍏 macOS (Apple Silicon & Intel)</option>
+                  <option value="windows">Windows (64-bit)</option>
+                  <option value="macos">macOS (Apple Silicon e Intel)</option>
                 </select>
               </div>
 
@@ -264,7 +417,7 @@
           </form>
 
           <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:0.82rem; color:var(--muted);">
-            <span>🔒 Download protegido e autenticado via Cloudflare.</span>
+            <span>Download protegido e autenticado pela sua licença.</span>
             <span>Ainda não tem chave? <a href="#contato" style="color:var(--lime); font-weight:700; text-decoration:none;">Falar no Telegram ↗</a></span>
           </div>
         </div>
@@ -275,12 +428,14 @@
       <div class="wrap faq-layout">
         <div><span class="eyebrow">FAQ técnico</span><h2>Dúvidas frequentes.</h2></div>
         <div>
-          <article class="faq-item open"><button class="faq-q" aria-expanded="true"><span>O MOBPRO precisa de internet para trabalhar?</span><span>+</span></button><div class="faq-a"><div><p>Não. Todo o cálculo de nesting, edição tridimensional, planos de corte e geração de G-code é executado 100% offline no seu computador. A conexão é necessária apenas pontualmente para checagem rápida da licença.</p></div></div></article>
+          <article class="faq-item open"><button class="faq-q" aria-expanded="true"><span>O MOBPRO precisa de internet para trabalhar?</span><span>+</span></button><div class="faq-a"><div><p>Para projetar e produzir, não: edição 3D, nesting e geração de G-code rodam no seu computador. A internet é usada em dois momentos: na validação da licença e no envio do QR Code das etiquetas para a nuvem, que é onde o módulo ou o projeto fica disponível para visualização no celular.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Qual a diferença entre o Basic e o Furações CNC?</span><span>+</span></button><div class="faq-a"><div><p>O Basic cobre projeto, orçamento, etiquetas, plano de montagem e exportação CSV para Cortecloud com peças retas, sem usinagens. O Furações CNC inclui tudo isso e acrescenta o envio das usinagens ao Cortecloud, a produção das formas orgânicas (no Basic elas servem só para visualizar e saem retas no corte), o nesting com sobras, as furações paramétricas, recortes de sólidos, simulação e a geração direta de G-code e DXF para a sua router.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Posso começar no Basic e migrar depois?</span><span>+</span></button><div class="faq-a"><div><p>Sim. Fale com o atendimento para trocar o plano. Seus projetos do SketchUp, blocos e configurações continuam os mesmos; os recursos de furação e CNC passam a ficar disponíveis.</p></div></div></article>
           <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Como funciona o suporte técnico?</span><span>+</span></button><div class="faq-a"><div><p>O atendimento é prático e realizado diretamente por especialistas da área através do Telegram, com suporte voltado à realidade do chão de fábrica.</p></div></div></article>
-          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>O que acontece em caso de atraso na mensalidade?</span><span>+</span></button><div class="faq-a"><div><p>Apenas os módulos exclusivos de processamento de usinagem e nesting ficam temporariamente suspensos. Ao regularizar, o acesso retorna de imediato sem cobrança de nova taxa; seus arquivos 3D e bibliotecas locais continuam intactos.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>O que acontece se eu ficar sem pagar a mensalidade?</span><span>+</span></button><div class="faq-a"><div><p>A licença fica suspensa até a regularização. Você tem até 6 meses de carência: voltando nesse prazo, o acesso retorna sem cobrança dos meses parados. Depois de 6 meses, é necessária uma nova adesão. Em qualquer caso, seus arquivos do SketchUp e bibliotecas locais continuam intactos.</p></div></div></article>
           <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Preciso de Artcam ou Aspire para gerar o arquivo de corte?</span><span>+</span></button><div class="faq-a"><div><p>No plano MOBPRO Furações CNC, o código G-code é gerado diretamente pelo SketchUp com sequenciamento correto de ferramentas, eliminando a dependência obrigatória de outros softwares CAM para móveis sob medida.</p></div></div></article>
-          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Como funciona a adaptação para a minha router CNC?</span><span>+</span></button><div class="faq-a"><div><p>O pós-processador do MOBPRO é altamente flexível e compatível com as controladoras mais comuns do mercado (DSP RichAuto, Mach3, Syntec, NcStudio, entre outras), operando com fresas padrão de desbaste, furação e acabamento.</p></div></div></article>
-          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>As furações e usinagens são paramétricas?</span><span>+</span></button><div class="faq-a"><div><p>Sim. Você pode aplicar e editar usinagens tanto de forma automatizada por regras quanto de forma pontual no modelo 3D, mantendo o controle total antes do envio para a máquina.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>Como funciona a adaptação para a minha router CNC?</span><span>+</span></button><div class="faq-a"><div><p>O plano Furações CNC traz 10 pós-processadores: G-code padrão, Mach3/Mach4, GRBL, Syntec, DSP RichAuto, NC Studio, Usitech 2S, TRAK, ALCA ATC e DNA ATCL. Na implantação, validamos o arquivo com a sua máquina e as suas fresas de desbaste, furação e acabamento.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" aria-expanded="false"><span>As furações e usinagens são paramétricas?</span><span>+</span></button><div class="faq-a"><div><p>Sim. Elas acompanham as medidas do móvel e podem ser aplicadas automaticamente ou editadas peça a peça no modelo 3D. Mas seguem exclusivamente os ajustes dos presets configurados por você: posição, diâmetro e profundidade vêm da sua configuração. A MOBPRO não se responsabiliza por erros decorrentes de configuração incorreta dos presets ou durante esse processo; confira a simulação e uma peça de teste antes de produzir em série.</p></div></div></article>
         </div>
       </div>
     </section>
@@ -297,7 +452,7 @@
     try {
       const videoCatalog = {
         suite: [
-          ["y1MiBKPvDi0","Inserir blocos com mira","5:59"],["dCKLNRaWDn4","Renomear peças","1:51"],["JqgTMSJNnUI","Face aninhada","2:06"],["dMBzq8yBsXA","Categorias","4:28"],["HEfHNVA6l1c","Nome do módulo","1:43"],["BEJ-tsEkWLY","Materiais — atualizado","9:39"],["CNJe2v4JCqg","Menu e seleção","4:20"],["ZsbAmUVACk8","Girar e limpar texturas de faces","4:10"],["3y2FVAs8E-w","Limpeza geral","2:33"],["PLszewnWxyA","Trocar componentes","3:16"],["RHXTEOP2ee0","Plano de montagem","5:20"],["i9PtzuTfnPI","Recortes manuais e automáticos para Router","5:06"],["nmDXrF-OW7U","Inserir furações — atualizado","12:00"],["62yxsE-w3GA","Orçamentos","3:37"],["ayhN2iXL_fg","Peças curvas com usinagens","10:25"],["vyQPOne18n0","Exportar CSV","3:06"],["gAgs5TuvErM","Inspeção e usinagem","2:35"],["FSe2jrWprFk","Plano de corte","7:54"],["biSCnu_uZ0g","Etiquetas","2:30"],["o7_VJZ70RFg","Exportar para máquina — GCODE / PROG","6:42"],["sUaPkgParTo","Atualizações automáticas e licenças","1:47"],["JbD5aSttYS8","Fluxo de furações e percurso de Router","15:00"],["sLW8AvthJSc","A grande atualização MOBPRO Suíte","2:39"],["ZnOksFKStdk","Recortes de rasgos, rebaixos e fundos","1:44"],["wMrunZKlVYw","Principais vantagens do MOBPRO","9:25"],["Bezz-RfG_e4","Furos de face frontal e traseira","14:32"],["f8YoViflYfc","G-code com rotação e corte das bordas","5:08"],["dJY03JSQwzw","Furos e simulação de G-code","12:53"],["xe22rh-mA4w","Retalhos, sobras e melhorias do Nesting","11:17"],["iZLvg1Ubc94","Melhorias no Nesting e plano de corte","5:46"],["gqjHNfQ5bl0","Como fazer plano de montagem","20:00"],["0mWUnZGvzgk","Etiquetas individuais direto do corte","3:07"],["GS6Tj4rofsc","Novidade: MOBPRO Construtor","34:00"],["qi5rYqC3ixA","Melhorias em etiquetas, Nesting e materiais","14:55"],["n2_dn1AqidM","Criador e editor de etiquetas","11:19"],["5jgmBkeGJ2g","Visualizador de módulos no QR Code","1:28"],["BI9ZYopmOpo","Presets de etiquetas: exportar e importar","5:03"],["tTjxzZrYDmY","Construtor: canto L e conjugados","21:00"],["MMLYh0aeSpo","Gerar peças curvas — otimizado","6:23"],["dS6fexfaUMw","Melhorias MOBPRO — junho de 2026","15:00"],["Xlp8vphynjk","Inserir usinagens","16:00"],["s8BpK7uDCZs","Possibilidades no Nesting","9:31"],["qcW4XIa3Pp8","Exportação de peças e cortes","1:57"],["0Z0CKw2nkKk","Centro de custos e Construtor","4:46"],["dGTELo3F5l0","Melhorias no plano de montagem","4:35"],["m_NUFMhibvE","Projetos com usinagem para Cortecloud","9:21"],["Mhjg3yuvTW0","Curvas na Router CNC","14:08"]
+          ["y1MiBKPvDi0","Inserir blocos com mira","5:59"],["dCKLNRaWDn4","Renomear peças","1:51"],["JqgTMSJNnUI","Face aninhada","2:06"],["dMBzq8yBsXA","Categorias","4:28"],["HEfHNVA6l1c","Nome do módulo","1:43"],["BEJ-tsEkWLY","Materiais — atualizado","9:39"],["CNJe2v4JCqg","Menu e seleção","4:20"],["ZsbAmUVACk8","Girar e limpar texturas de faces","4:10"],["3y2FVAs8E-w","Limpeza geral","2:33"],["PLszewnWxyA","Trocar componentes","3:16"],["RHXTEOP2ee0","Plano de montagem","5:20"],["i9PtzuTfnPI","Recortes manuais e automáticos para Router","5:06"],["nmDXrF-OW7U","Inserir furações — atualizado","12:00"],["62yxsE-w3GA","Orçamentos","3:37"],["ayhN2iXL_fg","Peças curvas com usinagens","10:25"],["vyQPOne18n0","Exportar CSV","3:06"],["gAgs5TuvErM","Inspeção e usinagem","2:35"],["FSe2jrWprFk","Plano de corte","7:54"],["biSCnu_uZ0g","Etiquetas","2:30"],["o7_VJZ70RFg","Exportar para máquina — G-code","6:42"],["sUaPkgParTo","Atualizações automáticas e licenças","1:47"],["JbD5aSttYS8","Fluxo de furações e percurso de Router","15:00"],["sLW8AvthJSc","A grande atualização MOBPRO Suíte","2:39"],["ZnOksFKStdk","Recortes de rasgos, rebaixos e fundos","1:44"],["wMrunZKlVYw","Principais vantagens do MOBPRO","9:25"],["Bezz-RfG_e4","Furos de face frontal e traseira","14:32"],["f8YoViflYfc","G-code com rotação e corte das bordas","5:08"],["dJY03JSQwzw","Furos e simulação de G-code","12:53"],["xe22rh-mA4w","Retalhos, sobras e melhorias do Nesting","11:17"],["iZLvg1Ubc94","Melhorias no Nesting e plano de corte","5:46"],["gqjHNfQ5bl0","Como fazer plano de montagem","20:00"],["0mWUnZGvzgk","Etiquetas individuais direto do corte","3:07"],["GS6Tj4rofsc","Novidade: MOBPRO Construtor","34:00"],["qi5rYqC3ixA","Melhorias em etiquetas, Nesting e materiais","14:55"],["n2_dn1AqidM","Criador e editor de etiquetas","11:19"],["5jgmBkeGJ2g","Visualizador de módulos no QR Code","1:28"],["BI9ZYopmOpo","Presets de etiquetas: exportar e importar","5:03"],["tTjxzZrYDmY","Construtor: canto L e conjugados","21:00"],["MMLYh0aeSpo","Gerar peças curvas — otimizado","6:23"],["dS6fexfaUMw","Melhorias MOBPRO — junho de 2026","15:00"],["Xlp8vphynjk","Inserir usinagens","16:00"],["s8BpK7uDCZs","Possibilidades no Nesting","9:31"],["qcW4XIa3Pp8","Exportação de peças e cortes","1:57"],["0Z0CKw2nkKk","Centro de custos e Construtor","4:46"],["dGTELo3F5l0","Melhorias no plano de montagem","4:35"],["m_NUFMhibvE","Projetos com usinagem para Cortecloud","9:21"],["Mhjg3yuvTW0","Curvas na Router CNC","14:08"]
         ],
         construtor: [
           ["KSZNGGxh1aA","MOBPRO Construtor — Vídeo 1","7:04"],["vjiiDuUOYxA","MOBPRO Construtor — Vídeo 2","17:00"],["cA_1gKL5EtM","MOBPRO Construtor — Vídeo 3","35:00"],["uB55YX94t7c","MOBPRO Construtor — Vídeo 4","9:58"],["8503uHfAG5Y","MOBPRO Construtor — Vídeo 5","26:00"],["XSYIpsiA3G8","MOBPRO Construtor — Vídeo 6","10:57"],["wcVl-bahFfI","Criando um porta-condimentos","25:00"]
@@ -341,9 +496,65 @@
         renderVideos();
       });
       const reveal = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); reveal.unobserve(entry.target); } });
+        entries.forEach((entry) => { if (entry.isIntersecting) { const target = entry.target; target.classList.add("visible"); reveal.unobserve(target); setTimeout(() => { target.style.transitionDelay = ""; }, 1200); } });
       }, { threshold: 0.12 });
-      document.querySelectorAll(".reveal").forEach((element) => reveal.observe(element));
+      // Entrada escalonada dos cartões de uma mesma grade
+      document.querySelectorAll(".reveal").forEach((element) => {
+        const siblings = element.parentElement ? Array.from(element.parentElement.children).filter((child) => child.classList.contains("reveal")) : [];
+        const index = siblings.indexOf(element);
+        if (siblings.length > 1 && index > 0) element.style.transitionDelay = `${Math.min(index, 5) * 70}ms`;
+        reveal.observe(element);
+      });
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Menu: fundo ao rolar, menu mobile e link ativo
+      const nav = document.querySelector(".nav");
+      const navToggle = document.querySelector(".nav-toggle");
+      const setMenu = (open) => {
+        nav.classList.toggle("open", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+        navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      };
+      navToggle.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+      nav.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
+      document.addEventListener("click", (event) => { if (!nav.contains(event.target)) setMenu(false); });
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      const navLinks = Array.from(nav.querySelectorAll(".nav-links a[href^='#']:not(.btn)"));
+      const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`));
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      sections.forEach((section) => activeObserver.observe(section));
+
+      // Contagem discreta dos números do topo
+      const counters = document.querySelectorAll(".metric-card b");
+      const countUp = (element) => {
+        const match = element.textContent.match(/^(\d+)(.*)$/);
+        if (!match || reduceMotion) return;
+        const target = Number(match[1]);
+        const suffix = match[2];
+        const start = performance.now();
+        const duration = 1100;
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          element.textContent = `${Math.round(target * eased)}${suffix}`;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { if (entry.isIntersecting) { countUp(entry.target); counterObserver.unobserve(entry.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach((counter) => counterObserver.observe(counter));
       document.querySelectorAll(".faq-q").forEach((button) => {
         button.addEventListener("click", () => {
           const item = button.closest(".faq-item");
@@ -374,7 +585,7 @@
             feedback.style.background = "rgba(79,156,255,0.12)";
             feedback.style.border = "1px solid rgba(79,156,255,0.4)";
             feedback.style.color = "#cfe2ff";
-            feedback.innerHTML = "⏳ <b>Consultando licença...</b> Aguarde um instante.";
+            feedback.innerHTML = "<b>Consultando licença...</b> Aguarde um instante.";
           } else if (type === "success") {
             feedback.style.background = "rgba(40,199,111,0.12)";
             feedback.style.border = "1px solid rgba(40,199,111,0.4)";
@@ -384,7 +595,7 @@
             feedback.style.background = "rgba(239,68,68,0.12)";
             feedback.style.border = "1px solid rgba(239,68,68,0.4)";
             feedback.style.color = "#fca5a5";
-            feedback.innerHTML = "⚠️ " + message;
+            feedback.innerHTML = message;
           }
         };
 
